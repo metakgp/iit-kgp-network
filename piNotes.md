@@ -1,6 +1,6 @@
 # Acheieved Goals:
 
-- Wifi connection at LBS:n<br/> 
+- Wifi connection at LBS:<br/> 
 
 | Device | Before | After | After with Express Vpn |
 | --- | --- | --- | --- |
