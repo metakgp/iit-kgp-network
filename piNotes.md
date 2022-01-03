@@ -1,4 +1,4 @@
-#Acheieved Goals:
+# Acheieved Goals:
 
 - Wifi connection at LBS:n<br/> 
 
@@ -10,29 +10,29 @@
 - Able to run vpn on raspberry pi.
 - Generally to connect two different devices with VPN we need to different account connections ( for express vpn key obtained for free through some resources ). This lead to exhaustion of key + the slow wifi made it unusable. But now multiple devices can connect to the Pi and use vpn with just one account registered with Pi and that too with *high* speed!
 
-#Method:
+# Method:
 
 The method is very trivial to understand, just the setup was a bit tough ( for me :D ) <br/>
 <img src="./piLan-img.jpg" width=900px height=400px />
 
 
-#Tech Stack:
+# Tech Stack:
 
 - hostapd : for AP creation (( check fast alternatives ))
 - dnsmasq : for DNS/DHCP configuration of clients (( check for better and faster alternatives ))
 - expressvpn : (( research in progress to find a better alternative [free, open source] ))
 
-#Configs:
+# Configs:
 
-##interfaces config
+## interfaces config
 
-##dnsmasq config
+## dnsmasq config
 
-##hostapd config
+## hostapd config
 
-##iptables config
+## iptables config
 
-#Know Issues and Bugs:
+# Know Issues and Bugs:
 
 - Express vpn does not work properly - a dns issue as it cant retrieve ip addresses given the hostname but it CAN ping directly to ip addresses -if force_vpn_dns is true (( insti network blocks custom dns - need more data to verify, maybe wrong )).<br/>
 Workaround : <br/>
