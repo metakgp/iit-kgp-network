@@ -15,22 +15,93 @@
 The method is very trivial to understand, just the setup was a bit tough ( for me :D ) <br/>
 <img src="./piLan-img.jpg" width=900px height=400px />
 
-
 # Tech Stack:
 
 - hostapd : for AP creation (( check fast alternatives ))
 - dnsmasq : for DNS/DHCP configuration of clients (( check for better and faster alternatives ))
 - expressvpn : (( research in progress to find a better alternative [free, open source] ))
 
+- Tutorial to set up AP in raspberry pi : [here](https://www.raspberrypi.com/documentation/computers/configuration.html#setting-up-a-routed-wireless-access-point)
+
 # Configs:
 
-## interfaces config
+## dhcpcd.conf
+
+- Location : `/etc/dhcpcd.conf`
+
+```
+interface wlan0			
+    static ip_address=192.168.4.1/24
+    nohook wpa_supplicant
+
+```
+
+## routed-ap.conf
+
+- Location : `/etc/sysctl.d/routed-ap.conf`
+
+```
+# Enable IPv4 routing
+net.ipv4.ip_forward=1
+```
+
+## iptables config
+
+- Command : `sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE`
+- Command 2 : `sudo iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE`
+- `-o eth0` : the outgoing interface ( in this case LAN )
+- `-o tun0` : required for VPN for tunnel interface forwarding
+
 
 ## dnsmasq config
 
+- Location  : `/etc/dnsmasq.conf`
+
+```
+interface=wlan0 # Listening interface
+dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
+                # Pool of IP addresses served via DHCP
+domain=wlan     # Local wireless DNS domain
+dhcp-option=6, 10.76.0.1
+address=/gw.wlan/192.168.4.1
+                # Alias for this router
+
+```
+
 ## hostapd config
 
-## iptables config
+- Location : `/etc/hostapd/hostapd.conf`
+
+```
+country_code=IN
+interface=wlan0
+ssid=PiLan2
+hw_mode=a
+channel=36
+macaddr_acl=0
+auth_algs=1
+ignore_broadcast_ssid=0
+wpa=2
+wpa_passphrase=SheharPi
+wpa_key_mgmt=WPA-PSK
+wpa_pairwise=TKIP
+rsn_pairwise=CCMP
+```
+
+## interfaces config
+
+- Location : `/etc/network/interfaces`
+
+```
+auto wlan0
+allow-hotplug wlan0
+iface wlan0 inet dhcp
+wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+wireless-power off
+iface default inet dhcp
+```
+
+- This is used to turn of the power management mode of inbuilt wifi
 
 # Know Issues and Bugs:
 
