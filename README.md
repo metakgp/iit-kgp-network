@@ -47,8 +47,8 @@ The institute has a fast Ethernet connection but a notoriously slow Wifi due to 
 
 
 
-```
-iwconfig wlo1
+```bash
+$ iwconfig wlo1
 wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
           Mode:Managed  Frequency:2.412 GHz  Access Point: E8:BA:70:61:38:E2
           Bit Rate=72.2 Mb/s   Tx-Power=20 dBm
