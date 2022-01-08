@@ -1,19 +1,19 @@
+<head>
+<script src="https://kit.fontawesome.com/9608e32e49.js" crossorigin="anonymous"></script>
+</head>
+
+
 # Index
 
 * [0 Index](#index)
-* [1 A journey to understand VPN](#a-journey-to-understand-vpn)
-* [2 Information about Institute Internet](#information-about-institute-internet)
-  * [2.1 Packet Filtering and Services](#packet-filtering-and-services)
-  * [2.2 Information Related to VPNs](#information-related-to-vpns)
-    * [2.2.1 A Ray of Hope : ExpressVPN works](#a-ray-of-hope--expressvpn-works)
-  * [2.3 Slow WIFI Speed](#slow-wifi-speed)
-    * [2.3.1 Best Solution](#best-solution)
-    * [2.3.2 Feasible Solution](#feasible-solution)
-* [3 To Do](#to-do)
-
-# A journey to understand VPN
-
-This is a repo which is my journey to understand VPNs in my free time. This repo will be updated until I grow bore of it and archive it. Thanks for visiting!
+* [1 Information about Institute Internet](#information-about-institute-internet)
+  * [1.1 Packet Filtering and Services](#packet-filtering-and-services)
+  * [1.2 Working VPNs](#working-vpns)
+    * [1.1.1 A Ray of Hope : ExpressVPN works](#a-ray-of-hope--expressvpn-works)
+  * [1.3 Slow WIFI Speed](#slow-wifi-speed)
+    * [1.3.1 Best Solution](#best-solution)
+    * [1.3.2 Feasible Solution](#feasible-solution)
+* [2 To Do](#to-do)
 
 # Information about Institute Internet
 
@@ -26,9 +26,14 @@ This is a repo which is my journey to understand VPNs in my free time. This repo
 
 ## Working VPNs
 
-- Not all `UDP` based VPNs working ( reason [maybe] : UDP packets directly dropped )
-- Nord VPN, WARP or 1.1.1.1 by Cloudflare , VPNHub by Pornhub :  **Do not work** 
-- `TCP` based VPNs work but are really slow of course due to the facilities provided by TCP
+- Not all **UDP based** VPNs working ( reason [maybe] : UDP packets directly dropped )
+- Some **TCP based** VPNs work but are really slow of course due to the facilities provided by TCP
+- List of VPNs :
+
+| VPN | Platform | Status |
+| --- | --- | --- |
+| Warp (1.1.1.1) | <i class="fab fa-windows"></i> + Linux + Android | ❌ |
+| 
 
 ### A Ray of Hope : ExpressVPN works
 
@@ -47,8 +52,8 @@ The institute has a fast Ethernet connection but a notoriously slow Wifi due to 
 
 
 
-```bash
-$ iwconfig wlo1
+```console
+lagnos@rog:~$ iwconfig wlo1
 wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
           Mode:Managed  Frequency:2.412 GHz  Access Point: E8:BA:70:61:38:E2
           Bit Rate=72.2 Mb/s   Tx-Power=20 dBm
@@ -84,3 +89,4 @@ Benefits : As in the previous solution you can get much better speed than the in
 - [ ] Research on ExpressVPN protocol being used across devices
 - [ ] ExpressVPN iptables
 - [ ] ExpressVPN DNS Bypassing methodology
+- [ ] Check if `ngrok` works properly
