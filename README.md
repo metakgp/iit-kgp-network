@@ -1,122 +1,80 @@
-# Conclusion of this Project
+# Index
 
-- The speed of the Wifi from Raspberry Pi is being capped by the Wifi Adapter present in Raspberry Pi 4B.
-- RPi 4B supports both 2.4 Ghz and 5Ghz but a band of only 20 Mhz. The speed is bein capped at 54 Mb/s (Mb - Megabits)
-- The speed is capped mainly because the Wifi adapter shares the same bus as USB 2.0 ( according to some articles )
+* [0 Index](#index)
+* [1 A journey to understand VPN](#a-journey-to-understand-vpn)
+* [2 Information about Institute Internet](#information-about-institute-internet)
+  * [2.1 Packet Filtering and Services](#packet-filtering-and-services)
+  * [2.2 Information Related to VPNs](#information-related-to-vpns)
+    * [2.2.1 A Ray of Hope : ExpressVPN works](#a-ray-of-hope--expressvpn-works)
+  * [2.3 Slow WIFI Speed](#slow-wifi-speed)
+    * [2.3.1 Best Solution](#best-solution)
+    * [2.3.2 Feasible Solution](#feasible-solution)
+* [3 To Do](#to-do)
 
-- Possible Solution : **Buy a USB 3.0 Wireless adapter which supports AP (Access Point) Mode.**
-- :warning:  ` Its better to buy a router (300 Mbps) that can support OpenWRT Operating System as Pi is costly `
-<p> So I am gonna most probably use my Pi for another projects now :D</p>
+# A journey to understand VPN
 
-# Acheieved Goals:
+This is a repo which is my journey to understand VPNs in my free time. This repo will be updated until I grow bore of it and archive it. Thanks for visiting!
 
-- Wifi connection at LBS:<br/> 
+# Information about Institute Internet
 
-| Device | Before | After | After with Express Vpn |
-| --- | --- | --- | --- |
-| Android | 16 Mbps | 60 Mbps | Roughly Same: 54 Mbps |
-| Laptop | 8 Mbps | 24 Mbps | Same: 20-24 Mbps |
+## Packet Filtering and Services
 
-- Able to run vpn on raspberry pi.
-- Generally to connect 2 different devices with VPN we need 2 different account connections ( for express vpn key obtained for free through some resources ). This lead to exhaustion of key + the slow wifi made it unusable. But now multiple devices can connect to the Pi and use vpn with just one account registered with Pi and that too with *high* speed!
+- `UDP` packets are dropped - `dig`, `nslookup`, etc. don't work
+- `ICMP` packets are dropped - `ping`, `traceroute`, etc. don't work
+- Custom DNS Servers are not allowed as DNS servers commonly listen on `port 53` which is blocked
+- There is packet filtering too as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable. Credentials can be cracked easily. Lookup `chapcrack`.
+-  Cannot `ssh` external network like `ec2`, `aws` and `digital ocean`.
 
-# Method:
+## Information Related to VPNs
 
-The method is very trivial to understand, just the setup was a bit tough ( for me :D ) <br/>
-<img src="./piLan-img.jpg" width=900px height=400px />
+- Not all `UDP` based VPNs working ( reason [maybe] : UDP packets directly dropped )
+- Nord VPN, WARP or 1.1.1.1 by Cloudflare , VPNHub by Pornhub :  **Do not work**
+- `TCP` based VPNs work but are really slow of course due to the facilities provided by TCP
 
-# Tech Stack:
+### A Ray of Hope : ExpressVPN works
 
-- hostapd : for AP creation (( check fast alternatives ))
-- dnsmasq : for DNS/DHCP configuration of clients (( check for better and faster alternatives ))
-- expressvpn : (( research in progress to find a better alternative [free, open source] ))
+- Express VPN works - it uses `Lightway Protocol` whose core is open sourced now [here](https://github.com/expressvpn/lightway-core) - and a combination of `iptable` rules and `DNS Resolution`.
 
-- Tutorial to set up AP in raspberry pi : [here](https://www.raspberrypi.com/documentation/computers/configuration.html#setting-up-a-routed-wireless-access-point)
+<p> My speculation is that it runs in TCP Mode and its fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
 
-# Configs:
+- ==So the ray of hope is== that using the lightway core and iptables we ==may be able to manage creating out our version of VPN== that can be hosted on any server obtained by Student credits.
 
-## dhcpcd.conf
 
-- Location : `/etc/dhcpcd.conf`
+## Slow WIFI Speed
 
-```
-interface wlan0			
-    static ip_address=192.168.4.1/24
-    nohook wpa_supplicant
-
-```
-
-## routed-ap.conf
-
-- Location : `/etc/sysctl.d/routed-ap.conf`
+- The institute has a fast Ethernet connection but a notoriously slow Wifi due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
 
 ```
-# Enable IPv4 routing
-net.ipv4.ip_forward=1
+iwconfig wlo1
+wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
+          Mode:Managed  Frequency:2.412 GHz  Access Point: E8:BA:70:61:38:E2
+          Bit Rate=72.2 Mb/s   Tx-Power=20 dBm
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Power Management:on
+          Link Quality=50/70  Signal level=-60 dBm
+          Rx invalid nwid:0  Rx invalid crypt:0  Rx invalid frag:0
+          Tx excessive retries:2004  Invalid misc:5420   Missed beacon:0
 ```
 
-## iptables config
+### Best Solution
 
-- Command : `sudo iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE`
-- Command 2 : `sudo iptables -t nat -A POSTROUTING -o tun0 -j MASQUERADE`
-- `-o eth0` : the outgoing interface ( in this case LAN )
-- `-o tun0` : required for VPN for tunnel interface forwarding
+- **Just buy a router**
+- Buy a good 300Mbps or (1 Gbps if u are rich) aand then use ethernet interface to distribute internet wia the wifi interface.
+- Setting up can be a bit tedious for beginners but it is relatively easier and much better than the next solution.
 
+<p>Benefits : You can get 300Mbps internet, and even if u share with 3 room mates u still get arorund 100 Mbps in the worst case scenario which is much better than getting 12-13 Mbps on Wifi </p>
 
-## dnsmasq config
+### Feasible Solution
 
-- Location  : `/etc/dnsmasq.conf`
+- This solution can be used if u have raspberry pi with you and don't want to buy a router.
+- The logic is same, route the connections on Wifi interface via the ethernet interface.
+- Buy a 150 Mbps usb adapter
 
-```
-interface=wlan0 # Listening interface
-dhcp-range=192.168.4.2,192.168.4.20,255.255.255.0,24h
-                # Pool of IP addresses served via DHCP
-domain=wlan     # Local wireless DNS domain
-dhcp-option=6, 10.76.0.1
-address=/gw.wlan/192.168.4.1
-                # Alias for this router
+<p>For detailed config : Check out my post [here](https://github.com/sheharyaar/vpn/rpi-express.md).<br/>
+Benefits : As in the previous solution you can get much better speed than the institute wifi and can enjoy online streaming. Cheers!</p>
 
-```
+# To Do
 
-## hostapd config
-
-- Location : `/etc/hostapd/hostapd.conf`
-
-```
-country_code=IN
-interface=wlan0
-ssid=PiLan2
-hw_mode=a
-channel=36
-macaddr_acl=0
-auth_algs=1
-ignore_broadcast_ssid=0
-wpa=2
-wpa_passphrase=SheharPi
-wpa_key_mgmt=WPA-PSK
-wpa_pairwise=TKIP
-rsn_pairwise=CCMP
-```
-
-## interfaces config
-
-- Location : `/etc/network/interfaces`
-
-```
-auto wlan0
-allow-hotplug wlan0
-iface wlan0 inet dhcp
-wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
-wireless-power off
-iface default inet dhcp
-```
-
-- This is used to turn of the power management mode of inbuilt wifi
-
-# Know Issues and Bugs:
-
-- Express vpn does not work properly - a dns issue as it cant retrieve ip addresses given the hostname but it CAN ping directly to ip addresses -if force_vpn_dns is true (( insti network blocks custom dns - need more data to verify, maybe wrong )).<br/>
-Workaround : <br/>
-1. Expressvpn after connecting saves dns address in file at `/etc/resolv.conf.bak` or similar ( can be verified by viewing the file ).
-2. Just copy that dns address and paste it in the file `/etc/resolv.conf`.
-3. To let connected clients connect to internet on vpn edit the file `/etc/dnsmasq.conf` and edit the line `server=<EXPRESSVPN IP HERE>` and then reload the dns service using `sudo systemctl restart dnsmasq.service`.<br/>
+- [ ] Research on ExpressVPN protocol being used across devices
+- [ ] ExpressVPN iptables
+- [ ] ExpressVPN DNS Bypassing methodology
