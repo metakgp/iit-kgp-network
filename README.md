@@ -32,7 +32,13 @@
 
 | VPN | Platform | Status |
 | --- | --- | --- |
-| Warp (1.1.1.1) | ![w] ![l] ![a] | ❌ |
+| Warp (1.1.1.1) | ![a]  ![w] ![l]| ❌ |
+| NordVpn |  ![a] ![w]| ❌ |
+| VPNHub by Pornhub | ![a] | ❌ |
+| Psiphon | ![a] | ✅ |
+| ExpressVPN | ![a] ![w] ![l]  | ✔️ |
+
+✅ : Connected but so slow that it's unisable
 
 
 ### A Ray of Hope : ExpressVPN works
@@ -95,6 +101,6 @@ Benefits : As in the previous solution you can get much better speed than the in
 
 
 <!-- Icons Load -->
-[w]:./windows.png 
+[w]:./window.png 
 [l]:./linux.png
 [a]:./android.png
