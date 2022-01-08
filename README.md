@@ -33,16 +33,20 @@ This is a repo which is my journey to understand VPNs in my free time. This repo
 
 ### A Ray of Hope : ExpressVPN works
 
-- Express VPN works - it uses `Lightway Protocol` whose core is open sourced now [here](https://github.com/expressvpn/lightway-core) - and a combination of `iptable` rules and `DNS Resolution`.
+Express VPN works - it uses `Lightway Protocol` whose core is open sourced now [here](https://github.com/expressvpn/lightway-core) - and a combination of `iptable` rules and `DNS Resolution`.
 
-- My speculation is that it runs in TCP Mode and its fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
+
+My speculation is that it runs in TCP Mode and its fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
+
 
 > So the ray of hope is that using the lightway core and iptables we may be able to manage creating out our version of VPN that can be hosted on any server obtained by Student credits.
 
 
 ## Slow WIFI Speed
 
-- The institute has a fast Ethernet connection but a notoriously slow Wifi due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
+The institute has a fast Ethernet connection but a notoriously slow Wifi due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
+
+
 
 ```
 iwconfig wlo1
@@ -56,18 +60,21 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
           Tx excessive retries:2004  Invalid misc:5420   Missed beacon:0
 ```
 
+
 ### Best Solution
 
-- **Just buy a router**
-- Buy a good 300Mbps or (1 Gbps if u are rich) aand then use ethernet interface to distribute internet wia the wifi interface.
-- Setting up can be a bit tedious for beginners but it is relatively easier and much better than the next solution.
+**Just buy a router**
+
+
+Buy a good 300Mbps or (1 Gbps if u are rich) aand then use ethernet interface to distribute internet wia the wifi interface.<br/>
+Setting up can be a bit tedious for beginners but it is relatively easier and much better than the next solution.
 
 > Benefits : You can get 300Mbps internet, and even if u share with 3 room mates u still get arorund 100 Mbps in the worst case scenario which is much better than getting 12-13 Mbps on Wifi
 
 ### Feasible Solution
 
-- This solution can be used if u have raspberry pi with you and don't want to buy a router.
-- The logic is same, route the connections on Wifi interface via the ethernet interface.
+This solution can be used if u have raspberry pi with you and don't want to buy a router.<br/>
+- The logic is same, route the connections on Wifi interface via the ethernet interface.<br/>
 - Buy a 150 Mbps usb adapter
 
 > For detailed config : Check out my post [here](./rpi-express.md).<br/>
