@@ -32,7 +32,7 @@
 
 | VPN | Platform | Status |
 | --- | --- | --- |
-| Warp (1.1.1.1) | ![w] ![l] Android | ❌ |
+| Warp (1.1.1.1) | ![w] ![l] ![a] | ❌ |
 
 
 ### A Ray of Hope : ExpressVPN works
@@ -95,6 +95,6 @@ Benefits : As in the previous solution you can get much better speed than the in
 
 
 <!-- Icons Load -->
-[w]:https://github.com/ryanoasis/nerd-fonts/wiki/screenshots/v1.0.x/windows-pass-sm.png 
-[l]:https://github.com/ryanoasis/nerd-fonts/wiki/screenshots/v1.0.x/linux-pass-sm.png
-[m]:https://github.com/ryanoasis/nerd-fonts/wiki/screenshots/v1.0.x/mac-pass-sm.png
+[w]:./windows.png 
+[l]:./linux.png
+[a]:./android.png
