@@ -120,7 +120,3 @@ Workaround : <br/>
 1. Expressvpn after connecting saves dns address in file at `/etc/resolv.conf.bak` or similar ( can be verified by viewing the file ).
 2. Just copy that dns address and paste it in the file `/etc/resolv.conf`.
 3. To let connected clients connect to internet on vpn edit the file `/etc/dnsmasq.conf` and edit the line `server=<EXPRESSVPN IP HERE>` and then reload the dns service using `sudo systemctl restart dnsmasq.service`.<br/>
-
-- Speed is slower : LAN 300 Mbps -> VPN 70 Mbps on Pi -> 60 Mbps Android (( MAYBE DUE TO BOTTLENECK ON PI and LESS BANDWIDTH OF INBUILT WIFI ADAPTER## To be verified with Pi fan and usb wifi 300Mbps ))
-
-- Redirection issues while opening some nsfw websites (xnxx,xvideos) and torrent sites (1337x.to, rarbg.to) but pornhub, whatsapp, telegram, slack, discord, steam and online games work.
