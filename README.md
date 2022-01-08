@@ -19,17 +19,17 @@ This is a repo which is my journey to understand VPNs in my free time. This repo
 
 ## Packet Filtering and Services
 
-- `UDP` packets are dropped - `dig`, `nslookup`, etc. don't work
-- `ICMP` packets are dropped - `ping`, `traceroute`, etc. don't work
-- Custom DNS Servers are not allowed as DNS servers commonly listen on `port 53` which is blocked
-- There is packet filtering too as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable. Credentials can be cracked easily. Lookup `chapcrack`.
--  Cannot `ssh` external network like `ec2`, `aws` and `digital ocean`.
+`UDP` packets are dropped - `dig`, `nslookup`, etc. don't work <br/>
+`ICMP` packets are dropped - `ping`, `traceroute`, etc. don't work <br/>
+Custom DNS Servers are not allowed as DNS servers commonly listen on `port 53` which is blocked <br/>
+There is packet filtering too as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable.  Credentials can be cracked easily. Lookup `chapcrack`.<br/>
+Cannot `ssh` external network like `ec2`, `aws` and `digital ocean`.
 
-## Information Related to VPNs
+## Working VPNs
 
-- Not all `UDP` based VPNs working ( reason [maybe] : UDP packets directly dropped )
-- Nord VPN, WARP or 1.1.1.1 by Cloudflare , VPNHub by Pornhub :  **Do not work**
-- `TCP` based VPNs work but are really slow of course due to the facilities provided by TCP
+Not all `UDP` based VPNs working ( reason [maybe] : UDP packets directly dropped ) <br/>
+Nord VPN, WARP or 1.1.1.1 by Cloudflare , VPNHub by Pornhub :  **Do not work** <br/>
+`TCP` based VPNs work but are really slow of course due to the facilities provided by TCP <br/>
 
 ### A Ray of Hope : ExpressVPN works
 
