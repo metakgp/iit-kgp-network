@@ -17,7 +17,7 @@
 | Laptop | 8 Mbps | 24 Mbps | Same: 20-24 Mbps |
 
 - Able to run vpn on raspberry pi.
-- Generally to connect two different devices with VPN we need to different account connections ( for express vpn key obtained for free through some resources ). This lead to exhaustion of key + the slow wifi made it unusable. But now multiple devices can connect to the Pi and use vpn with just one account registered with Pi and that too with *high* speed!
+- Generally to connect 2 different devices with VPN we need 2 different account connections ( for express vpn key obtained for free through some resources ). This lead to exhaustion of key + the slow wifi made it unusable. But now multiple devices can connect to the Pi and use vpn with just one account registered with Pi and that too with *high* speed!
 
 # Method:
 
