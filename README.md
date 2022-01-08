@@ -37,7 +37,7 @@ This is a repo which is my journey to understand VPNs in my free time. This repo
 
 <p> My speculation is that it runs in TCP Mode and its fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
 
-- ==So the ray of hope is== that using the lightway core and iptables we ==may be able to manage creating out our version of VPN== that can be hosted on any server obtained by Student credits.
+> So the ray of hope is that using the lightway core and iptables we may be able to manage creating out our version of VPN that can be hosted on any server obtained by Student credits.
 
 
 ## Slow WIFI Speed
@@ -62,7 +62,7 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
 - Buy a good 300Mbps or (1 Gbps if u are rich) aand then use ethernet interface to distribute internet wia the wifi interface.
 - Setting up can be a bit tedious for beginners but it is relatively easier and much better than the next solution.
 
-<p>Benefits : You can get 300Mbps internet, and even if u share with 3 room mates u still get arorund 100 Mbps in the worst case scenario which is much better than getting 12-13 Mbps on Wifi </p>
+> Benefits : You can get 300Mbps internet, and even if u share with 3 room mates u still get arorund 100 Mbps in the worst case scenario which is much better than getting 12-13 Mbps on Wifi
 
 ### Feasible Solution
 
@@ -70,8 +70,8 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
 - The logic is same, route the connections on Wifi interface via the ethernet interface.
 - Buy a 150 Mbps usb adapter
 
-<p>For detailed config : Check out my post [here](https://github.com/sheharyaar/vpn/rpi-express.md).<br/>
-Benefits : As in the previous solution you can get much better speed than the institute wifi and can enjoy online streaming. Cheers!</p>
+> For detailed config : Check out my post [here](https://github.com/sheharyaar/vpn/rpi-express.md).<br/>
+Benefits : As in the previous solution you can get much better speed than the institute wifi and can enjoy online streaming. Cheers!
 
 # To Do
 
