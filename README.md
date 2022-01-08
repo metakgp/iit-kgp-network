@@ -1,10 +1,19 @@
+# Conclusion of this Project
+
+- The speed of the Wifi from Raspberry Pi is being capped by the Wifi Adapter present in Raspberry Pi 4B.
+- RPi 4B supports both 2.4 Ghz and 5Ghz but a band of only 20 Mhz. The speed is bein capped at 54 Mb/s (Mb - Megabits)
+- The speed is capped mainly because the Wifi adapter shares the same bus as USB 2.0 ( according to some articles )
+
+<p> Possible Solution : **Buy a USB 3.0 Wireless adapter which supports AP (Access Point) Mode.** </p>
+<p> :warning: ` ** Its better to buy a router (300 Mbps) that can support OpenWRT Operating System as Pi is costly ** ` 
+<p> So I am gonna most probably use my Pi for another projects now :D
 # Acheieved Goals:
 
 - Wifi connection at LBS:<br/> 
 
 | Device | Before | After | After with Express Vpn |
 | --- | --- | --- | --- |
-| Android | 16 Mbps | 60 Mbps | Same: 58-60 Mbps |
+| Android | 16 Mbps | 60 Mbps | Roughly Same: 54 Mbps |
 | Laptop | 8 Mbps | 24 Mbps | Same: 20-24 Mbps |
 
 - Able to run vpn on raspberry pi.
