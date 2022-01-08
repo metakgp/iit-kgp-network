@@ -1,5 +1,5 @@
 <head>
-<script src="https://kit.fontawesome.com/9608e32e49.js" crossorigin="anonymous"></script>
+
 </head>
 
 
@@ -32,8 +32,8 @@
 
 | VPN | Platform | Status |
 | --- | --- | --- |
-| Warp (1.1.1.1) | <i class="fab fa-windows"></i> + Linux + Android | ❌ |
-| 
+| Warp (1.1.1.1) | ![w] ![l] Android | ❌ |
+
 
 ### A Ray of Hope : ExpressVPN works
 
@@ -90,3 +90,11 @@ Benefits : As in the previous solution you can get much better speed than the in
 - [ ] ExpressVPN iptables
 - [ ] ExpressVPN DNS Bypassing methodology
 - [ ] Check if `ngrok` works properly
+
+
+
+
+<!-- Icons Load -->
+[w]:https://github.com/ryanoasis/nerd-fonts/wiki/screenshots/v1.0.x/windows-pass-sm.png 
+[l]:https://github.com/ryanoasis/nerd-fonts/wiki/screenshots/v1.0.x/linux-pass-sm.png
+[m]:https://github.com/ryanoasis/nerd-fonts/wiki/screenshots/v1.0.x/mac-pass-sm.png
