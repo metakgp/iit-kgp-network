@@ -35,7 +35,7 @@ This is a repo which is my journey to understand VPNs in my free time. This repo
 
 - Express VPN works - it uses `Lightway Protocol` whose core is open sourced now [here](https://github.com/expressvpn/lightway-core) - and a combination of `iptable` rules and `DNS Resolution`.
 
-<p> My speculation is that it runs in TCP Mode and its fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
+<p> My speculation is that it runs in TCP Mode and its fast. But I need to verify this by looking at logs and iptable entries. I speculate that Lightway UDP doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
 
 > So the ray of hope is that using the lightway core and iptables we may be able to manage creating out our version of VPN that can be hosted on any server obtained by Student credits.
 
@@ -70,7 +70,7 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
 - The logic is same, route the connections on Wifi interface via the ethernet interface.
 - Buy a 150 Mbps usb adapter
 
-> For detailed config : Check out my post [here](https://github.com/sheharyaar/vpn/rpi-express.md).<br/>
+> For detailed config : Check out my post [here](./rpi-express.md).<br/>
 Benefits : As in the previous solution you can get much better speed than the institute wifi and can enjoy online streaming. Cheers!
 
 # To Do
