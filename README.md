@@ -6,14 +6,14 @@
 # Index
 
 * 0 . [Index](#index)
-* 1 . [Information about Institute Internet](#information-about-institute-internet)
-  * 1.1 [Packet Filtering and Services](#packet-filtering-and-services)
-  * 1.2 [Working VPNs](#working-vpns)
-    * 1.2.1 [A Ray of Hope : ExpressVPN works](#a-ray-of-hope--expressvpn-works)
-  * 1.3 [Slow WIFI Speed](#slow-wifi-speed)
-    * 1.3.1 [Best Solution](#best-solution)
-    * 1.3.2 [Feasible Solution](#feasible-solution)
-* 2 . [To Do](#to-do)
+* 1 . [Information about Institute Internet](#1-information-about-institute-internet)
+  * 1.1 [Packet Filtering and Services](#11-packet-filtering-and-services)
+  * 1.2 [Working VPNs](#12-working-vpns)
+    * 1.2.1 [A Ray of Hope : ExpressVPN works](#121-a-ray-of-hope--expressvpn-works)
+  * 1.3 [Slow WIFI Speed](#13-slow-wifi-speed)
+    * 1.3.1 [Best Solution](#131-best-solution)
+    * 1.3.2 [Feasible Solution](#132-feasible-solution)
+* 2 . [To Do](#2-to-do)
 
 # 1. Information about Institute Internet
 
