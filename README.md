@@ -12,7 +12,7 @@
     * 1.3.2 [Feasible Solution](#132-feasible-solution)
 * 2\. [To Do](#2-to-do)
 * 3\. [Contributing](#3-contributing)
-
+* 4\. [Credits](#4-Credits)
 
 # 1. Problems with Institute Internet
 
@@ -148,6 +148,15 @@ For Linux tests only :
 - `iptables` rules before and after using the vpn.
 
 ℹ️ VPN Tests on Linux is preferred as it will provide much more information than the other OS.
+
+# 4. Credits
+
+A great vote of thanks to the following contributors :
+- Ishan Manchanda (@IshanManchanda) - Contribution to the list of working VPNs.
+
+
+***
+
 
 <h3 align="center">Thank You for reading and contributing! ❤️❤️❤️ </h3>
 
