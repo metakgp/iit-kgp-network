@@ -116,7 +116,9 @@ iface default inet dhcp
 # Know Issues and Bugs:
 
 - Express vpn does not work properly - a dns issue as it cant retrieve ip addresses given the hostname but it CAN ping directly to ip addresses -if force_vpn_dns is true (( insti network blocks custom dns - need more data to verify, maybe wrong )).<br/>
-Workaround : <br/>
+
+### Workaround :
+
 1. Expressvpn after connecting saves dns address in file at `/etc/resolv.conf.bak` or similar ( can be verified by viewing the file ).
 2. Just copy that dns address and paste it in the file `/etc/resolv.conf`.
 3. To let connected clients connect to internet on vpn edit the file `/etc/dnsmasq.conf` and edit the line `server=<EXPRESSVPN IP HERE>` and then reload the dns service using `sudo systemctl restart dnsmasq.service`.<br/>
