@@ -76,6 +76,8 @@ My speculation is that it runs in TCP Mode and its fast. But I need to verify th
 
 Its not much right now, but I am currently working on it. Reasearching currently about VPNs. I am really new to this, so it's gonna take some time 🥲
 
+Ignore this section please.
+
 ***
 
 ## 1.3 Slow WIFI Speed
@@ -131,7 +133,7 @@ Benefits : As in the previous solution you can get much better speed than the in
 
 # 3. Contributing
 
-For tasks, take a look at [To Do section](#2-to-do). All help is appreciated. For VPN testing tasks, please create a new issue and attach/enter the following data (even if the VPN failed ) :
+For tasks, take a look at [To Do section](#2-to-do). All help is appreciated. Please create a new issue to contribute. For VPN testing tasks, attach/enter the following data (even if the VPN failed ) :
 
 For all systems : 
 
@@ -148,6 +150,10 @@ For Linux tests only :
 - `iptables` rules before and after using the vpn.
 
 ℹ️ VPN Tests on Linux is preferred as it will provide much more information than the other OS.
+
+For protocol testing tasks, please attach the following:
+- The method of testing
+- Screenshots or outputs from various programs if used like, `tcpdump` , `wireshark`, etc.
 
 # 4. Credits
 
