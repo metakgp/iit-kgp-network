@@ -152,7 +152,7 @@ For Linux tests only :
 # 4. Credits
 
 A great vote of thanks to the following contributors :
-- Ishan Manchanda (@IshanManchanda) - Contribution to the list of working VPNs.
+- Ishan Manchanda ([@IshanManchanda](https://github.com/IshanManchanda)) - Contribution to the list of working VPNs.
 
 
 ***
