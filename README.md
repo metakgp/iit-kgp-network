@@ -1,32 +1,46 @@
 # Index
 
 
-* 0\. [Index](#index)
-* 1\. [Information about Institute Internet](#1-problems-with-institute-internet)
+* 0\. [Introduction](#0-introduction)
+* 1\. [VPNs](#1-vpns)
   * 1.1 [Packet Filtering and Services](#11-packet-filtering-and-services)
   * 1.2 [Working VPNs](#12-working-vpns)
     * 1.2.1 [Interesting : ExpressVPN works](#121-interesting--expressvpn-works)
-  * [Solution to the above problems](#solution-to-the-above-problems)
-  * 1.3 [Slow WIFI Speed](#13-slow-wifi-speed)
-    * 1.3.1 [Best Solution](#131-best-solution)
-    * 1.3.2 [Feasible Solution](#132-feasible-solution)
-* 2\. [To Do](#2-to-do)
-* 3\. [Contributing](#3-contributing)
-* 4\. [Credits](#4-Credits)
+  * [Solution](#solution)
+* 2\. [Slow WIFI Speed](#2-slow-wifi-speed)
+    * 1.3.1 [Best Solution](#21-best-solution)
+    * 1.3.2 [Feasible Solution](#22-feasible-solution)
+* 3\. [Discussion](#3-discussion)
+* 4\. [To Do](#4-to-do)
+* 5\. [Contributing](#5-contributing)
+* 6\. [Credits](#6-credits)
 
-# 1. Problems with Institute Internet
+
+# 0. Introduction
+
+
+In this repo, I will write about the problems students face on campus network and attempt to provide solution (feasible or non feasible). The solutions end at Section 2.
+
+From Section 3, I will write in depth discussion on why does few protocols, which are really good, like OpenVPN, Wireguard, etc. do not work on campus network. Feel free to skip this section if you are not interested.
+
+Section 4 deals with Contributing rules and Section 5 ends with a vote of thanks to people who helped me in anyway.
+
+
+# 1. VPNs
 
 
 ## 1.1 Packet Filtering and Services
 
 | Protocol | Status | Proof | Remarks |
 | ---  | --- | --- | --- |
-| UDP  | ⚠️ | <ul><li> Programs using UDP like `dig`, `nslookup` (DNS on port 53). No custom DNS work neither on port 53, nor on 5353</li><li> The problem is some UDP ports **work**. I created a UDP port using netcat on DigitalOcean server on port `55554` and connected it from the institute wifi network using netcat on my laptop and it connected.</li></ul> | <ul><li>Its really confusing what is happening. Need more insight on how filtering is happening. Loos like `standard ports`, `DNS Servers` and common `IP addresses` are being blocked. Need more info</li><li>Need to create own UDP server and test if its just connecting or data is also transferred.</li><li>Need to look at implementation of netcat if required to know how it works with UDP.</ul> |        
-| TCP  | ⚠️ | <ul><li>Netcat server on DigitalOcean on port `55555` connected successfully on netcat client on laptop as well as on `telnet`</li><li>`ssh` to external servers doesn't work (common ports maybe blocked)</li><li>`tor` cannot be used (TCP over LTS) as it cannot connect to the nodes (strange : bare IPs are blocked)</li><li>TCP Based VPNs do work even though very much slow</li></ul>|<ul><li>Domain name servers work, but bare IP addressees don't work</li><li>Strangely bare IP to my DigitalOcean server connected on netcat</li><li> Need more info by creating server on various ports </li></ul>|
-| ICMP | ❌ | `ping` and `traceroute` doesn't work at all | ICMP packets are plainly dropped |
+| UDP  | ✅ | <ul><li>The network connected well to server hosted on Cloud on non standard port `55555` over UDP.</li></ul>  | <ul><li> UDP works and connects to an external server on **non reserved ports** (>1023)</li><li> As common and reserved ports are most probably blocked, services like `DNS` doesn't work. Hence programs depending on DNS-name resolution like `dig` and `nslookup` won't work. The server is able to use **only the DNS provided by campus network DHCP** </li><li>To make DNS work we need `iptables` magic on Linux. This `iptables` is used by expressvpn to forward DNS requests. Read More in Discussions.</li></ul> |        
+| TCP  | ✅ | <ul><li>Server hosted on cloud could be connected via `netcat` and `telnet` without issues on port `55555` and similar private ports.</ul>|<ul><li>TCP Based VPNs do work even though very much slow</li><li>Servers outside the campus network can be accessed over TCP comfortably,, **on non reserved ports** (ports > 1023)</li><li>`tor` cannot be used (TCP over LTS) as it cannot connect to the nodes.</li><li> Need to check tor on a private port and update info.</ul>|
+| ICMP | ❌ | <ul><li>`ping` and `traceroute` doesn't work at all</li></ul> | <ul><li>ICMP packets are plainly dropped displaying normal firewall behaviour.</li></ul> |
 
-There is packet filtering too as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable.  Credentials can be cracked easily. So it's better to use implement some security methods. For more info lookup : `chapcrack`.
 
+ℹ️ **Very Important Note** : Externally hosted servers can be accessed on private ports via both TCP and UDP. The problem is that a ` internally hosted server cannot be exposed to the external network`. Creation of socket on the all itnerface (0.0.0.0) requires resolution of hostname by the function `getnameinfo` which requires DNS resolution - which doesn't work due to the firewall. My strong speculation is that this can too be bypassed using `iptables` or `ngrok`.
+
+There is packet filtering (speculated too) as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable.  Credentials can be cracked easily. So it's better to use implement some security methods. For more info lookup : `chapcrack`.
 
 
 ## 1.2 Working VPNs
@@ -69,18 +83,21 @@ My speculation is that it runs in TCP Mode and its fast. But I need to verify th
 
 > So the ray of hope is that using the lightway core and iptables we may be able to manage creating out our version of VPN that can be hosted on any server obtained by Student credits.
 
+
 ***
 
 
-## Solution to the above problems
+## Solution
 
 Its not much right now, but I am currently working on it. Reasearching currently about VPNs. I am really new to this, so it's gonna take some time 🥲
 
 Ignore this section please.
 
+
 ***
 
-## 1.3 Slow WIFI Speed
+
+# 2. Slow WIFI Speed
 
 The institute has a fast Ethernet connection but a notoriously slow Wifi due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
 
@@ -99,7 +116,7 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
 ```
 
 
-### 1.3.1 Best Solution
+## 2.1 Best Solution
 
 
 **Just buy a router**
@@ -111,7 +128,7 @@ Setting up can be a bit tedious for beginners but it is relatively easier and mu
 > Benefits : You can get 300Mbps internet, and even if u share with 3 room mates u still get arorund 100 Mbps in the worst case scenario which is much better than getting 12-13 Mbps on Wifi
 
 
-### 1.3.2 Feasible Solution
+## 2.2 Feasible Solution
 
 
 This solution can be used if u have raspberry pi with you and don't want to buy a router.<br/>
@@ -122,16 +139,24 @@ This solution can be used if u have raspberry pi with you and don't want to buy 
 Benefits : As in the previous solution you can get much better speed than the institute wifi and can enjoy online streaming. Cheers!
 
 
-# 2. To Do
+
+# 3. Discussion
 
 
-- [ ] Verify protocols and services filtering, need more proof.
+This section is a read for people who wish to know why various protocols like Wireguard or OpenVPN did not work. Anything that is written here are my observations and may not be absolutely correct. If you find any error please open an issue and inform me about it to make this repository more accurate. This is going to be a long read, so buckle up 🚀.
+
+
+# 4. To Do
+
+
+- [ ] Check tor working on non reserved port and update info
+- [ ] Check if TCP and UDP are working on ports between (1024 and 49151) : reserved ports
 - [ ] Verify VPNs except Express VPN if they do really work across devices. Detailed testing should bee done if many methods are available to connect.
 - [ ] Research on ExpressVPN protocol being used across devices, iptables methds and DNS Bypassing.
 - [ ] Check if `ngrok` works properly and if it works, what methodology does it use / and compare to other vpn protocols
 
 
-# 3. Contributing
+# 5. Contributing
 
 For tasks, take a look at [To Do section](#2-to-do). All help is appreciated. Please create a new issue to contribute. For VPN testing tasks, attach/enter the following data (even if the VPN failed ) :
 
@@ -155,10 +180,11 @@ For protocol testing tasks, please attach the following:
 - The method of testing
 - Screenshots or outputs from various programs if used like, `tcpdump` , `wireshark`, etc.
 
-# 4. Credits
+# 6. Credits
 
 A great vote of thanks to the following contributors :
 - Ishan Manchanda ([@IshanManchanda](https://github.com/IshanManchanda)) - Contribution to the list of working VPNs.
+- Soham Sen ([@FadedCoder](https://github.com/FadedCoder)) - Testing UDP and TCP on external network on private ports via `netcat`.
 
 
 ***
