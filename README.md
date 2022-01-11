@@ -40,8 +40,6 @@ Section 4 deals with Contributing rules and Section 5 ends with a vote of thanks
 
 ℹ️ **Very Important Note** : Externally hosted servers can be accessed on private ports via both TCP and UDP. The problem is that a ` internally hosted server cannot be exposed to the external network`. Creation of socket on the all itnerface (0.0.0.0) requires resolution of hostname by the function `getnameinfo` which requires DNS resolution - which doesn't work due to the firewall. My strong speculation is that this can too be bypassed using `iptables` or `ngrok`.
 
-There is packet filtering (speculated too) as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable.  Credentials can be cracked easily. So it's better to use implement some security methods. For more info lookup : `chapcrack`.
-
 
 ## 1.2 Working VPNs
 
@@ -145,6 +143,9 @@ Benefits : As in the previous solution you can get much better speed than the in
 
 This section is a read for people who wish to know why various protocols like Wireguard or OpenVPN did not work. Anything that is written here are my observations and may not be absolutely correct. If you find any error please open an issue and inform me about it to make this repository more accurate. This is going to be a long read, so buckle up 🚀.
 
+I feel blocking of UDP is a major culprit in VPNs not working. I am not sure but the topics here I discuss will be updated, because I will try my best to verufy those with supporting resources.
+
+There is packet filtering (speculated too) as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable.  Credentials can be cracked easily. So it's better to use implement some security methods. For more info lookup : `chapcrack` on Google.
 
 # 4. To Do
 
