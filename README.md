@@ -5,15 +5,18 @@
 * 1\. [VPNs](#1-vpns)
   * 1.1 [Packet Filtering and Services](#11-packet-filtering-and-services)
   * 1.2 [Working VPNs](#12-working-vpns)
-    * 1.2.1 [Interesting : ExpressVPN works](#121-interesting--expressvpn-works)
+    * 1.2.1 [Using OpenVPN](#121-using-openvpn)
+    * 1.2.2 [Using Wireguard](#122-using-wireguard)
+    * 1.2.3 [Observation : ExpressVPN works best](#123-observation--expressvpn-works-best)
   * [Solution](#solution)
-* 2\. [Slow WIFI Speed](#2-slow-wifi-speed)
-    * 1.3.1 [Best Solution](#21-best-solution)
-    * 1.3.2 [Feasible Solution](#22-feasible-solution)
-* 3\. [Discussion](#3-discussion)
-* 4\. [To Do](#4-to-do)
-* 5\. [Contributing](#5-contributing)
-* 6\. [Credits](#6-credits)
+* 2\. [Slow LAN Speed](#2-slow-lan-speed)
+* 3\. [Slow WIFI Speed](#3-slow-wifi-speed)
+    * 3.1 [Best Solution](#31-best-solution)
+    * 3.2 [Feasible Solution](#32-feasible-solution)
+* 4\. [Discussion](#4-discussion)
+* 5\. [To Do](#5-to-do)
+* 6\. [Contributing](#6-contributing)
+* 7\. [Credits](#7-credits)
 
 
 # 0. Introduction
@@ -50,7 +53,7 @@ Section 4 deals with Contributing rules and Section 5 ends with a vote of thanks
 
 | VPN / DNS | Platform | Status |
 | --- | --- | --- |
-| ExpressVPN | ![w] ![l] ![a] | ✔️ |
+| ExpressVPN (Not free) | ![w] ![l] ![a] | ✔️ |
 | Psiphon | ![a] | ✅ |
 | HoxxVPN | ![w] ![l] | ✅ |
 | SetupVPN | ![w] ![l] | ✅ |
@@ -59,18 +62,24 @@ Section 4 deals with Contributing rules and Section 5 ends with a vote of thanks
 | NordVpn | ![w] ![a] | ❌ |
 | VPNHub by P\*rnhub |  ![a] | ❌ |
 | OpenVPN hosted on Digital Ocean | ![w] ![l] ![a] | ❌ |
-| Wireguard hosted on AWS EC2 | ![w] ![l] ![a] | ❌ |
-| OpenVPN / Wireguard hosted on Azure | ![w] ![l] ![a] | ❔ |
+| OpenVPN hosted on Digital AWS ec2 | ![w] ![l] ![a] | ✅ |
 | OpenVPN / Wireguard hosted on Linode | ![w] ![l] ![a] | ❔ |
+| Wireguard hosted on AWS EC2 | ![w] ![l] ![a] | ❌ |
 | Tor | ![w] ![l] ![a] | ❌ |
 
 ❔ : check pending <br/>
-✅ : Connected but so slow that it's unusable
+✅ : Connected but really slow
 
 > Note : OpenVPN hosted on Linode has been successfully used by a senior but it costs momey to buy server credits. AWS, Azure, DigitalOcean free credits can be acquired using student account via Github. Wish they worked. The senior also informed something about using ngrok too. Need more information 
 
 
-### 1.2.1 Interesting : ExpressVPN works
+### 1.2.1 Using OpenVPN
+
+
+### 1.2.2 Using Wireguard
+
+
+### 1.2.3 Observation : ExpressVPN works best
 
 
 Express VPN works and it works damn fast - it uses `Lightway Protocol` whose core is open sourced now [here](https://github.com/expressvpn/lightway-core) - and a combination of `iptable` rules and `DNS Resolution`.
@@ -95,7 +104,10 @@ Ignore this section please.
 ***
 
 
-# 2. Slow WIFI Speed
+# 2. Slow LAN Speed
+
+
+# 3. Slow WIFI Speed
 
 The institute has a fast Ethernet connection but a notoriously slow Wifi due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
 
@@ -114,7 +126,7 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
 ```
 
 
-## 2.1 Best Solution
+## 3.1 Best Solution
 
 
 **Just buy a router**
@@ -126,7 +138,7 @@ Setting up can be a bit tedious for beginners but it is relatively easier and mu
 > Benefits : You can get 300Mbps internet, and even if u share with 3 room mates u still get arorund 100 Mbps in the worst case scenario which is much better than getting 12-13 Mbps on Wifi
 
 
-## 2.2 Feasible Solution
+## 3.2 Feasible Solution
 
 
 This solution can be used if u have raspberry pi with you and don't want to buy a router.<br/>
@@ -138,7 +150,7 @@ Benefits : As in the previous solution you can get much better speed than the in
 
 
 
-# 3. Discussion
+# 4. Discussion
 
 
 This section is a read for people who wish to know why various protocols like Wireguard or OpenVPN did not work. Anything that is written here are my observations and may not be absolutely correct. If you find any error please open an issue and inform me about it to make this repository more accurate. This is going to be a long read, so buckle up 🚀.
@@ -147,7 +159,7 @@ I feel blocking of UDP is a major culprit in VPNs not working. I am not sure but
 
 There is packet filtering (speculated too) as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable.  Credentials can be cracked easily. So it's better to use implement some security methods. For more info lookup : `chapcrack` on Google.
 
-# 4. To Do
+# 5. To Do
 
 
 - [ ] Check tor working on non reserved port and update info
@@ -157,7 +169,7 @@ There is packet filtering (speculated too) as the network prohibits the use of c
 - [ ] Check if `ngrok` works properly and if it works, what methodology does it use / and compare to other vpn protocols
 
 
-# 5. Contributing
+# 6. Contributing
 
 For tasks, take a look at [To Do section](#2-to-do). All help is appreciated. Please create a new issue to contribute. For VPN testing tasks, attach/enter the following data (even if the VPN failed ) :
 
@@ -181,11 +193,12 @@ For protocol testing tasks, please attach the following:
 - The method of testing
 - Screenshots or outputs from various programs if used like, `tcpdump` , `wireshark`, etc.
 
-# 6. Credits
+# 7. Credits
 
 A great vote of thanks to the following contributors :
 - Ishan Manchanda ([@IshanManchanda](https://github.com/IshanManchanda)) - Contribution to the list of working VPNs.
 - Soham Sen ([@FadedCoder](https://github.com/FadedCoder)) - Testing UDP and TCP on external network on private ports via `netcat`.
+- Rajiv Harlalka ([@rajivharlalka](https://github.com/rajivharlalka)) and Chirag Ghosh ([@chirag828049](https://github.com/chirag828049)) - Helping me with OpenVPN Setup.
 
 
 ***
