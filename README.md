@@ -10,6 +10,11 @@
     * 3.1 [Best Solution](#31-best-solution)
     * 3.2 [Feasible Solution](#32-feasible-solution)
 * 4\. [Discussion](#4-discussion)
+    * 4.1 [Packet Filtering](#41-packet-filtering)
+    * 4.2 [VPN Protocols](#42-vpn-protocols)
+    * 4.3 [Wireguard](#43-wireguard)
+    * 4.4 [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn)
+    * 4.5 [Further Steps](#45-further-steps)
 * 5\. [Contributing](#5-contributing)
 * 6\. [Credits](#6-credits)
 
@@ -34,11 +39,13 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 | ExpressVPN (Not free) | ![w] ![l] ![a] | ✔️ | Even though paid, its the fastest, most stable and the most secure option out there. |
 | OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] | ✔️ | This is slower than ExpressVPN but its very much feasible for using on PC/Laptop.<br/> |
 
+ℹ️  For detailed comparison of OpenVPN on EC2, DigitalOcean and ExpressVPN for `gamers` and `casual users`, see [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn) section. 
+
 - Working Solutions but **not recommended**:
 
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
-| Psiphon | ![a] | ✅ | Uses `L2TP/IPsec`. For more info on protocols see [Discussion](#4-discussion) section.<br/>Slow and requires more CPU consumption. |
+| Psiphon | ![a] | ✅ | Uses `L2TP/IPsec`. For more info on protocols see [VPN Protocols](#42-vpn-protocols) section.<br/>Slow and requires more CPU consumption. |
 | SetupVPN | ![w] ![l] | ⚠️ | No information on which protocols are used.<br/>Maybe unsafe.<br/>Full services for paid users.
 | HoxxVPN | ![w] ![l] | ⚠️ | It's not a VPN, its more like a proxy for PC. For browsers, it uses `http tunneling`.<br/>Its unsafe as it uses 4096-RSA, which has already been cracked.
 
@@ -46,10 +53,10 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
-| Wireguard hosted on any server | ![w] ![l] ![a] | ❌ | Uses UDP, which is blocked. More about this under [Discussion](#4-discussion) section |
+| Wireguard hosted on any server | ![w] ![l] ![a] | ❌ | Uses UDP, which is blocked. More about this under [Packet Filtering](#41-packet-filtering) section |
 | Warp (1.1.1.1) | ![w] ![l] ![a] | ❌ | Uses Wireguard internally |
 | VPNHub |  ![a] | ❌ | Could have worked by changing the settings, but that is for paid users only. |
-| Tor | ![w] ![l] ![a] | ❌ | Tor commonly uses ports 9001 and 9030 for network traffic and directory information - [source](https://wiki.wireshark.org/Tor#protocol-dependencies), which are blocked on network. See more about blocked ports under [Discussion](#4-discussion) section. |
+| Tor | ![w] ![l] ![a] | ❌ | Tor commonly uses ports 9001 and 9030 for network traffic and directory information - [source](https://wiki.wireshark.org/Tor#protocol-dependencies), which are blocked on network. See more about blocked ports under [Packet Filtering](#41-packet-filtering). |
 | NordVpn | ![w] ![a] | ❔ | Uses NordLymx (based on Wireguard) by default, it can work as it also supports OpenVPN. But it's paid |
 | HotspotShield | ![w] ![l] | ❔ | Not yet tested, its paid |
 
@@ -58,8 +65,8 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 Conclusion:
 
-- **UDP** based VPNs don't work because UDP is dropped (see [Discussion](#4-discussion) ) unless some tunneling is used.
-- **TCP** based VPNs work on port `443` as it is allowed. Connection on other ports are reset. OpenVPN and ExpressVPN are the fastest **and** the most secure VPNs available.
+- **UDP** based VPNs don't work because UDP is dropped (see [Packet Filtering](#41-packet-filtering)) unless some tunneling is used.
+- **TCP** based VPNs work on port `443` as it is allowed. Connection on other ports are reset ( see - issue[#2](https://github.com/sheharyaar/vpn/issues/2) ). OpenVPN and ExpressVPN are the fastest **and** the most secure VPNs available.
 
 
 ## 1.1 Using OpenVPN
@@ -128,6 +135,7 @@ To be updated
 
 **Just buy a router or use raspberry Pi**
 
+**Setting up router :**
 
 Buy a good 300Mbps or (1 Gbps if u are rich) and then use ethernet interface to distribute internet wia the wifi interface.<br/>
 Before buying check if it will support OpenWRT, to be able to forward conenctions from ethernet to wifi ( to be used as Access point ) and vice versa.
@@ -135,7 +143,7 @@ Setting up can be a bit tedious for beginner but it will give high speed interne
 
 > Benefits : You can get 300Mbps internet, and even if u share with 3 room mates u still get arorund 100 Mbps in the worst case scenario which is much better than getting 12-13 Mbps on Wifi
 
-For Raspberry Pi :
+**For Raspberry Pi :**
 
 - The logic is same, route the connections on Wifi interface via the ethernet interface.
 - Buy a 150/300 Mbps usb adapter which is **capable of AP mode** (verify before buying).
@@ -156,7 +164,7 @@ I feel blocking of UDP is a major culprit in VPNs not working. I am not sure but
 There is packet filtering (speculated too) as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable.  Credentials can be cracked easily. So it's better to use implement some security methods. For more info lookup : `chapcrack` on Google.
 
 
-## 4.1 Packet Filtering and Services
+## 4.1 Packet Filtering
 
 | Protocol | Status | Proof | Remarks |
 | ---  | --- | --- | --- |
@@ -168,6 +176,16 @@ There is packet filtering (speculated too) as the network prohibits the use of c
 ℹ️ **Very Important Note** : Externally hosted servers can be accessed on private ports via both TCP and UDP. The problem is that a ` internally hosted server cannot be exposed to the external network`. Creation of socket on the all itnerface (0.0.0.0) requires resolution of hostname by the function `getnameinfo` which requires DNS resolution - which doesn't work due to the firewall. My strong speculation is that this can too be bypassed using `iptables` or `ngrok`.
 
 
+## 4.2 VPN Protocols
+<!-- Different type of protocols -->
+
+## 4.3 Wireguard
+<!-- Problem with using wireguard and alternatives and their problems -->
+
+## 4.4 OpenVPN vs ExpressVPN
+<!-- Complete comparison of speed in games and casual too -->
+
+## 4.5 Further Steps
 
 # 5. Contributing
 
