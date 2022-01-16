@@ -251,7 +251,25 @@ This section is a read for people who wish to know why various protocols like Wi
 ## 4.2 VPN Protocols
 <!-- Different type of protocols -->
 
-To be updated with comparisons soon!
+|Rank||Speed|Stability|Security|Encryption|
+|---|--- |--- |--- |--- |--- |
+|1|ExpressVPN|Very Fast|Very Stable|High|WolfSSL|
+|2|WireGuard|Fast|Stable|High|ChaCha20|
+|3|OpenVPN|Fast|Very stable|Very high|160-bit, 256-bit|
+|4|IKEv2/IPSec|Fast|Very stable|High|256-bit|
+|5|L2TP/IPsec|Medium, due to double encapsulation|Stable|Medium|256-bit|
+|6|SSTP|Fast|Very stable|High|256-bit|
+|7|PPTP|Speedy, due to low encryption|Very stable|Weak|128-bit|
+
+Resources Used :
+
+[Comparing WireGuard and Lightway](https://www.expressvpn.com/blog/comparing-wireguard-and-lightway-3-reasons-we-created-lightway/)<br/>
+[OpenVPN vs IPSec, WireGuard, L2TP, and IKEv2](https://restoreprivacy.com/vpn/openvpn-ipsec-wireguard-l2tp-ikev2-protocols/)<br/>
+[Best VPN Protocols: OpenVPN vs PPTP vs L2TP vs Others](https://thebestvpn.com/pptp-l2tp-openvpn-sstp-ikev2-protocols/)<br/>
+[Wireguard](https://www.wireguard.com/#about-the-project)<br/>
+[Lightway vs Wireguard vs OpenVPN - Youtube](https://www.youtube.com/watch?v=28e1sDvrkrk)
+
+And many more...
 
 ## 4.3 Wireguard
 <!-- Problem with using wireguard and alternatives and their problems -->
@@ -265,6 +283,7 @@ As we see in the section above, Wireguard is faster than OpenVPN. So it was a ve
 
 Resources Used:
 
+[Known Limitations](https://www.wireguard.com/known-limitations/)<br/>
 [https://gist.github.com/insdavm/90cbeffe76ba4a51251d83af604adf94](https://gist.github.com/insdavm/90cbeffe76ba4a51251d83af604adf94)<br/>
 [https://github.com/wangyu-/udp2raw/issues/411](https://github.com/wangyu-/udp2raw/issues/411)<br/>
 [https://encomhat.com/2021/07/wireguard-over-tcp/](https://encomhat.com/2021/07/wireguard-over-tcp/)
