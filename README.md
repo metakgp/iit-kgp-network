@@ -71,8 +71,51 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 ## 1.1 Using OpenVPN
 
+### Step 1: Get an AWS account
 
-To be updated soon.
+Watch this video on how to create a free AWS account - [Create new AWS account](https://www.youtube.com/watch?v=gA9pl-A9gDM). Remember this step requires you to have a debit card (Mastercard, American Express or Visa).
+
+### Step 2: Create a free ec2 instance
+
+Watch this video on how to create an ec2 instance- [AWS Launch EC2 Instance](https://www.youtube.com/watch?v=sRRO5TEGfY4).<br/>
+Remember to use the server location as Mumbai. Ignore the setup related to setting up webserver. Stop after the SSH step.
+
+In the video part - [here](https://youtu.be/sRRO5TEGfY4?t=286) make sure to select "Add Rule" and add a "Custom TCP Port" with the port number 443 and under "Source" select "Anywhere IPv4".
+
+> The further 2 steps are from a blog, [IIT KGP: Bypassing network restrictions without compromising on internet speed by Anjay Goel](https://anjaygoel.github.io/posts/IIT-KGP-Bypass-Internet-Restrictions/#step-3-setting-up-openvpn-access-server) 
+
+### Step 3: Setting Up OpenVPN Access Server:
+
+*   Thanks to a few popular installer scripts, installing an OpenVPN server is straightforward once you have ssh’ed into the remote machine. Follow the steps in either of these scripts to install the VPN server on the remote machine.
+    *   [Option 1](https://github.com/angristan/openvpn-install) (This one worked perfectly for me!)
+        
+    *   [Option 2](https://github.com/Nyr/openvpn-install)
+        
+        **Note**: Choose the port you opened earlier (80 or 443) and TCP protocol as UDP doesn’t work.
+        
+*   Run the same script to generate new clients (you will need a unique client for each device that’s going to be connected to the VPN)
+    
+*   Now copy the client ovpn files to your device using scp:
+    
+    `$ scp -i /path/to/privatekey <username>@<host>:/path/to/ovpn_file ~/Documents/`
+    
+*   To start/stop/check status of open-vpn server use `systemctl`:
+    
+    `$ sudo systemctl start/stop/status openvpn@server.service`
+    
+
+### Step 4: Connecting to VPN on client devices:
+
+*   **Android**: Copy the ovpn file to the device and download a client. There are two options:
+    
+    *   [Official Client](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
+    *   [Open Source Client](https://play.google.com/store/apps/details?id=de.blinkt.openvpn)
+    
+    I prefer the open-source client as it allows you to choose which apps use VPN and which don’t selectively. Now run the client, load the ovpn file and connect. And you are done.
+    
+*   **Linux**: In many distros, you can go to the network manager and import the ovpn file. If not then install OpenVPN (`$ sudo apt-get install openvpn`) and run using `$ sudo openvpn --config /path/to/config.ovpn`.
+    
+*   **Windows**: Download the [official client](https://openvpn.net/client-connect-vpn-for-windows/), import the ovpn file and run.
 
 
 ## 1.2 Observation : ExpressVPN works best
