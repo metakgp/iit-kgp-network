@@ -91,18 +91,18 @@ My speculation is that it runs in TCP Mode and its fast. But I need to verify th
 
 Before concluding that there is issue with the port, make sure to check the following
 
-### LAN Cable : 
+### 2.1 LAN Cable : 
 
 Make sure your cable is CAT 5e and better (6, 6e, etc.) that you can get easily in TechM. 
 
 <img src="cat-cables.png" />
 
 
-### Ethernet Adapter properties :
+### 2.2 Ethernet Adapter properties :
 
 Its easy to check etehrnet properties of your ethernet adapter.<br/>
 
-For linux
+#### For linux users
 
 ```console
 $ ip link list
@@ -134,16 +134,14 @@ more info
 
 As you can see it shows `1000baseT/Full`. This means my adapter supports 1000 Mbps ( 1Gbps ) with Full Duplex.
 
-#### For windows users: 
-[Check this post](https://www.windowscentral.com/how-determine-wi-fi-and-ethernet-connection-speed-windows-10)
+#### For windows users: [Check this post](https://www.windowscentral.com/how-determine-wi-fi-and-ethernet-connection-speed-windows-10)
 
 ℹ️ If your speed is less than 1Gbps, check your laptop manual online. If it shows it supports 1Gbps, update your drivers.
 
-### Disbale auto-negotiation
+### 2.3 Disbale auto-negotiation
 
 
 ✔️ This is really important section. 
-
 
 Sometimes even though everything is correct the speed gets capped around `75Mbps`. This is due to the LAN server auto negotiates to a speed which can be used by both the parties (server and client). You can force the speed and duplex to full speed.
 
@@ -155,7 +153,7 @@ $ sudo ethtool -s [device_name] speed [10/100/1000] duplex [half/full] autoneg [
 ```
 Here device_name is obtained from `ip link list` (the same from previous step). Speed is in Mbps - 1000 means 1Gbps, and duplex is the communication multiplexing - full means both ways. autoneg will be off.
 
-In my case (since the institute network supports 1Gbps we can use full duplex, it's less probable that it will cause issues like more collisions - [see here]() ) I used this command :
+In my case (since the institute network supports 1Gbps we can use full duplex, it's less probable that it will cause issues like more collisions - [see here](https://en.wikipedia.org/wiki/Duplex_mismatch). The insti server auto negotiates and we won't so maybe a mismatch. ) I used this command :
 
 ```console
 $ sudo ethtool -s eno2 speed 1000 duplex full autoneg off
@@ -166,11 +164,11 @@ To revert back:
 $ sudo ethtool -s eno2 speed 1000 duplex full autoneg on
 ```
 
-#### For Windows users : 
+#### For Windows users : [Follow this guide](https://docs.microsoft.com/en-us/azure/devops/reference/xml/configure-network-adapter-automatically-adjust-speed?view=tfs-2013). **But**, in the last step instead of `Auto`, select `1.0 Gbps Full Duplex`.
 
-[Follow this guide](https://docs.microsoft.com/en-us/azure/devops/reference/xml/configure-network-adapter-automatically-adjust-speed?view=tfs-2013). **But**, in the last step instead of `Auto`, select `1.0 Gbps Full Duplex`.
+<img src="lan-full.png"/>
 
-<img src="lan-full.jpg" width="500px" height="400px"/>
+> Note: If still the network is slow, then it must be the issue with the port or the entire network is slow due to maintainence.
 
 # 3. Slow WIFI Speed
 
@@ -253,7 +251,7 @@ This section is a read for people who wish to know why various protocols like Wi
 ## 4.2 VPN Protocols
 <!-- Different type of protocols -->
 
-
+To be updated with comparisons soon!
 
 ## 4.3 Wireguard
 <!-- Problem with using wireguard and alternatives and their problems -->
@@ -274,8 +272,39 @@ Resources Used:
 
 ## 4.4 OpenVPN vs ExpressVPN
 <!-- Complete comparison of speed in games and casual too -->
+The testing was done on a couple of devices from the campus ( LBS Hall ). Devices being - ROG Strix G15 2020, Aspitre 7 and MSI GL65 Leopard.
+
+- For casual users 💻
+
+| Server | Download Speed Before | Download Speed After |
+| --- | --- | --- |
+| ExpressVPN | 600 Mbps | 500-550 Mbps |
+| OpenVPN - AWS ec2 | 600 Mbps | 150 Mbps |
+| openVPN - Digital Ocean | 600 Mbps | 200 Mbps |
+
+- For gamers 😎
+
+CSGO Official Servers:
+| Server | Ping | Packet Loss | Remarks |
+| --- | --- |--- | --- |
+| ExpressVPN - Mumbai | 50-70 ms | Rare | Its Paid T_T | 
+| OpenVPN - AWS ec2 | 60-80 ms| Rare | Its free for 1 year with 1 account. <br/> 4 people 4 years. Ez Katka 😄 |
+| OpenVPN - DigitalOcean | 130+ ms | 2-4 % | Don't use it, not worthy |
+
+Valorant
+| Server | Ping | Packet Loss | Remarks
+| --- | --- |--- | --- |
+| ExpressVPN - Mumbai | 50-80 ms | Rare | ✔️ 
+| OpenVPN - AWS ec2 | 70-90 | Rare | ✔️ 💙
+| OpenVPN - DigitalOcean | 120+ ms | 5-6 % | 😞 |
+
+As you could see, ExpressVPN maybe the best. Among AWS and DigitalOcean, `AWS` is much better as it's servers are in Mumbai whereas for DigitalOcean its in Bangalore.
 
 ## 4.5 Further Steps
+
+This repository is available for anyone who wishes to add upon this work or needs information for any purpose or maybe be implement own VPN. For me, I would love to research more on this topic and look for ways to improve the Internet situation at the campus. It was really difficult with bad network at the campus to be able to even talk with parents on video call as whatsapp and similar apps are blocked.
+
+Beleiving in open source I hope someone will add value to this repository, so that even people with less technical experience can understand basic comparisons among the various servers and technologies.
 
 # 5. Contributing
 
