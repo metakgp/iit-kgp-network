@@ -37,7 +37,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
 | ExpressVPN (Not free) | ![w] ![l] ![a] | ✔️ | Even though paid, its the fastest, most stable and the most secure option out there. |
-| OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] | ✔️ | This is slower than ExpressVPN but its very much feasible for using on PC/Laptop.<br/> |
+| OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] | ✔️ | This is slower than ExpressVPN but its very much feasible for using on PC/Laptop.<br/> It uses more CPU than ExpressVPN and Wireguard |
 
 ℹ️  For detailed comparison of OpenVPN on EC2, DigitalOcean and ExpressVPN for `gamers` and `casual users`, see [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn) section. 
 
