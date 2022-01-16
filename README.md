@@ -8,7 +8,7 @@
 * 2\. [Slow LAN Speed](#2-slow-lan-speed)
 * 3\. [Slow WIFI Speed](#3-slow-wifi-speed)
     * 3.1 [Best Solution](#31-best-solution)
-    * 3.2 [Feasible Solution](#32-feasible-solution)
+    * 3.2 [Other Solutions](#32-other-solutions)
 * 4\. [Discussion](#4-discussion)
     * 4.1 [Packet Filtering](#41-packet-filtering)
     * 4.2 [VPN Protocols](#42-vpn-protocols)
@@ -53,7 +53,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
-| Wireguard hosted on any server | ![w] ![l] ![a] | ❌ | Uses UDP, which is blocked. More about this under [Packet Filtering](#41-packet-filtering) section |
+| Wireguard hosted on any server | ![w] ![l] ![a] | ❌ | Uses UDP, which is blocked. More about this under [Wireguard](#43-wireguard) section |
 | Warp (1.1.1.1) | ![w] ![l] ![a] | ❌ | Uses Wireguard internally |
 | VPNHub |  ![a] | ❌ | Could have worked by changing the settings, but that is for paid users only. |
 | Tor | ![w] ![l] ![a] | ❌ | Tor commonly uses ports 9001 and 9030 for network traffic and directory information - [source](https://wiki.wireshark.org/Tor#protocol-dependencies), which are blocked on network. See more about blocked ports under [Packet Filtering](#41-packet-filtering). |
@@ -63,7 +63,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 ❔ : Untested
 
 
-Conclusion:
+#### Conclusion:
 
 - **UDP** based VPNs don't work because UDP is dropped (see [Packet Filtering](#41-packet-filtering)) unless some tunneling is used.
 - **TCP** based VPNs work on port `443` as it is allowed. Connection on other ports are reset ( see - issue[#2](https://github.com/sheharyaar/vpn/issues/2) ). OpenVPN and ExpressVPN are the fastest **and** the most secure VPNs available.
@@ -84,27 +84,93 @@ Express VPN works and it works damn fast - it uses `Lightway Protocol` whose cor
 My speculation is that it runs in TCP Mode and its fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
 
 
-> So the ray of hope is that using the lightway core and iptables we may be able to manage creating out our version of VPN that can be hosted on any server obtained by Student credits.
-
-
-***
-
-
-## Solution
-
-Its not much right now, but I am currently working on it. Reasearching currently about VPNs. I am really new to this, so it's gonna take some time 🥲
-
-Ignore this section please.
-
-
-***
+> I will try to implement soon my own lightway based VPN. So do checkout this page in future too!
 
 
 # 2. Slow LAN Speed
 
+Before concluding that there is issue with the port, make sure to check the following
 
-To be updated
+### LAN Cable : 
 
+Make sure your cable is CAT 5e and better (6, 6e, etc.) that you can get easily in TechM. 
+
+<img src="cat-cables.png" />
+
+
+### Ethernet Adapter properties :
+
+Its easy to check etehrnet properties of your ethernet adapter.<br/>
+
+For linux
+
+```console
+$ ip link list
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+2: eno2: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+    link/ether 24:4b:fe:6f:4f:b4 brd ff:ff:ff:ff:ff:ff
+    altname enp3s0
+3: wlo1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueue state DOWN mode DORMANT group default qlen 1000
+    link/ether 3c:58:c2:da:d9:69 brd ff:ff:ff:ff:ff:ff
+    altname wlp0s20f3
+...
+more info
+```
+
+In this case `eno2` is my ethernet adapter. So next use `ethtool`, if not present google how to install (for unix/linux only).
+
+```console
+$ ethtool eno2
+Settings for eno2:
+	Supported ports: [ TP	 MII ]
+	Supported link modes:   10baseT/Half 10baseT/Full
+	                        100baseT/Half 100baseT/Full
+	                        1000baseT/Full
+                           
+...
+more info 
+```
+
+As you can see it shows `1000baseT/Full`. This means my adapter supports 1000 Mbps ( 1Gbps ) with Full Duplex.
+
+#### For windows users: 
+[Check this post](https://www.windowscentral.com/how-determine-wi-fi-and-ethernet-connection-speed-windows-10)
+
+ℹ️ If your speed is less than 1Gbps, check your laptop manual online. If it shows it supports 1Gbps, update your drivers.
+
+### Disbale auto-negotiation
+
+
+✔️ This is really important section. 
+
+
+Sometimes even though everything is correct the speed gets capped around `75Mbps`. This is due to the LAN server auto negotiates to a speed which can be used by both the parties (server and client). You can force the speed and duplex to full speed.
+
+⚠️ This may not work for everybody so your connection **will go out** for a moment but it will come back soon. If it doesn't connect at all (at present or in future cases) then revert the changes to auto.
+
+This method worked for me (tested on linux) and after a system restart my speed shot up from `75mbps` to direcrtly `700-800Mbps`. I used ethtool again for this.
+```console
+$ sudo ethtool -s [device_name] speed [10/100/1000] duplex [half/full] autoneg [on/off]
+```
+Here device_name is obtained from `ip link list` (the same from previous step). Speed is in Mbps - 1000 means 1Gbps, and duplex is the communication multiplexing - full means both ways. autoneg will be off.
+
+In my case (since the institute network supports 1Gbps we can use full duplex, it's less probable that it will cause issues like more collisions - [see here]() ) I used this command :
+
+```console
+$ sudo ethtool -s eno2 speed 1000 duplex full autoneg off
+```
+
+To revert back:
+```console
+$ sudo ethtool -s eno2 speed 1000 duplex full autoneg on
+```
+
+#### For Windows users : 
+
+[Follow this guide](https://docs.microsoft.com/en-us/azure/devops/reference/xml/configure-network-adapter-automatically-adjust-speed?view=tfs-2013). **But**, in the last step instead of `Auto`, select `1.0 Gbps Full Duplex`.
+
+<img src="lan-full.jpg" width="500px" height="400px"/>
 
 # 3. Slow WIFI Speed
 
@@ -128,10 +194,24 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
 ## 3.1 Best Solution
 
 
-To be updated
+The current laptops either use Wifi 5 or Wifi 6. The can be summarised as follows : 
+
+<img src="wifi5-vs-wifi6.jpg" />
 
 
-## 3.2 Feasible Solution
+Source : [What’s the Difference Between Wi-Fi 5 and Wi-Fi 6?](https://www.mwrf.com/technologies/systems/article/21849959/whats-the-difference-between-wifi-5-and-wifi-6)
+
+<br/>
+<br/>
+
+As you can see Wifi 5 supports `802.11ac` and Wifi 6 supports even better protocol, they are much capable of handling 1 Gbps.<br/>
+So the best solution will be to `create Wifi hotspot in your laptop and use it in android`.<br/>
+The speed of the network will depend on your connected devices. In new phones (2020 and above) you can get speed around `200 Mbps (20x)` easily.
+
+For ExpressVPN users : just connect your android on the hotspot created in windows and use the VPN **on your phone**. It works and gives `150 Mbps (15x)` easily.
+
+
+## 3.2 Other Solutions
 
 **Just buy a router or use raspberry Pi**
 
@@ -157,11 +237,9 @@ For detailed config : Check out my post [here](./rpi-express.md).
 # 4. Discussion
 
 
-This section is a read for people who wish to know why various protocols like Wireguard or OpenVPN did not work. Anything that is written here are my observations and may not be absolutely correct. If you find any error please open an issue and inform me about it to make this repository more accurate. This is going to be a long read, so buckle up 🚀.
+This section is a read for people who wish to know why various protocols like Wireguard or OpenVPN (UDP) did not work. Anything that is written here are my observations and may not be absolutely correct. If you find any error please open an issue and inform me about it to make this repository more accurate. This is going to be a long read, so buckle up 🚀.
 
-I feel blocking of UDP is a major culprit in VPNs not working. I am not sure but the topics here I discuss will be updated, because I will try my best to verufy those with supporting resources.
-
-There is packet filtering (speculated too) as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` which is very much vulnerable.  Credentials can be cracked easily. So it's better to use implement some security methods. For more info lookup : `chapcrack` on Google.
+- There is packet filtering as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` ( which btw is very much vulnerable).  Credentials can be cracked easily and MITM (Man in the middle attacks) can be used against a nconenction. So it's better to use implement some security methods. For more info lookup : `chapcrack` on Google.
 
 
 ## 4.1 Packet Filtering
@@ -172,15 +250,27 @@ There is packet filtering (speculated too) as the network prohibits the use of c
 | TCP  | 🟠 | <ul><li>Server hosted on cloud could be connected via `netcat` and `telnet` without issues on port `55555` and similar private ports.</ul>|<ul><li>TCP Based VPNs do work even though very much slow</li><li>Servers outside the campus network can be accessed over TCP comfortably, on any unused port other than the common ports.</li><li>`tor` cannot be used (TCP over LTS) as it cannot connect to the nodes.</li><li> Need to check tor on a private port and update info.</ul>|
 | ICMP | ❌ | <ul><li>`ping` and `traceroute` doesn't work at all</li></ul> | <ul><li>ICMP packets are plainly dropped displaying normal firewall behaviour.</li></ul> |
 
-
-ℹ️ **Very Important Note** : Externally hosted servers can be accessed on private ports via both TCP and UDP. The problem is that a ` internally hosted server cannot be exposed to the external network`. Creation of socket on the all itnerface (0.0.0.0) requires resolution of hostname by the function `getnameinfo` which requires DNS resolution - which doesn't work due to the firewall. My strong speculation is that this can too be bypassed using `iptables` or `ngrok`.
-
-
 ## 4.2 VPN Protocols
 <!-- Different type of protocols -->
 
+
+
 ## 4.3 Wireguard
 <!-- Problem with using wireguard and alternatives and their problems -->
+
+As we see in the section above, Wireguard is faster than OpenVPN. So it was a very good choice for a VPN. 
+
+- The issue faced in setting up was that Wireguard is `UDP only` VPN whereas the only option for us is to route traffic through `TCP:443`.
+- Tunneling TCP over TCP can be a disaster : [Why TCP Over TCP Is A Bad Idea](http://sites.inka.de/bigred/devel/tcp-tcp.html)
+- There are alternative solutions which involve `tunneling UDP over TCP` using utilities like : [udp2raw](https://github.com/wangyu-/udp2raw) and [udptunnel](http://www1.cs.columbia.edu/~lennox/udptunnel/). But sadly I was unable to set them up and couldn't make them work.
+- Even routing UDP over TCP is not much of a good idea and did not produce interesting results. The above method results in a performance similar to OpenVPN so why not just use OpenVPN : [Using Wireguard when UDP is blocked](https://blog.rraghur.in/2018/11/24/using-wireguard-when-udp-is-blocked/)
+
+Resources Used:
+
+[https://gist.github.com/insdavm/90cbeffe76ba4a51251d83af604adf94](https://gist.github.com/insdavm/90cbeffe76ba4a51251d83af604adf94)<br/>
+[https://github.com/wangyu-/udp2raw/issues/411](https://github.com/wangyu-/udp2raw/issues/411)<br/>
+[https://encomhat.com/2021/07/wireguard-over-tcp/](https://encomhat.com/2021/07/wireguard-over-tcp/)
+
 
 ## 4.4 OpenVPN vs ExpressVPN
 <!-- Complete comparison of speed in games and casual too -->
