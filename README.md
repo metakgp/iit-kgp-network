@@ -71,6 +71,8 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 ## 1.1 Using OpenVPN
 
+> ⚠️ Make sure to setup the server properly at your own risk. I am not liable to any charges you receive for your mistakes. Make sure to set a reminder to terminate your instance before 12 months end and use only one instance to avoid any charges after the number of free monthly credits expire. 
+
 ### Step 1: Get an AWS account
 
 Watch this video on how to create a free AWS account - [Create new AWS account](https://www.youtube.com/watch?v=gA9pl-A9gDM). Remember this step requires you to have a debit card (Mastercard, American Express or Visa).
