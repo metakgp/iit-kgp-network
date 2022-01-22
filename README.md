@@ -73,6 +73,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 ## 1.1 Using OpenVPN
 
+<!---
 > ⚠️ Make sure to setup the server properly at your own risk. I am not liable to any charges you receive for your mistakes. Make sure to set a reminder to terminate your instance before 12 months end and use only one instance to avoid any charges after the number of free monthly credits expire. 
 
 ### Step 1: Get an AWS account
@@ -120,7 +121,9 @@ In the video part - [here](https://youtu.be/sRRO5TEGfY4?t=286) make sure to sele
 *   **Linux**: In many distros, you can go to the network manager and import the ovpn file. If not then install OpenVPN (`$ sudo apt-get install openvpn`) and run using `$ sudo openvpn --config /path/to/config.ovpn`.
     
 *   **Windows**: Download the [official client](https://openvpn.net/client-connect-vpn-for-windows/), import the ovpn file and run.
+-->
 
+To be re-uploaded soon with better tutorial, bill management and a legal notice.
 
 ## 1.2 Observation : ExpressVPN works best
 
