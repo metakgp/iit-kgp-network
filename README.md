@@ -28,6 +28,8 @@ In Section 4, I will write in depth discussion on why does few protocols, which 
 
 Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks to people who helped me in anyway.
 
+> I am working on a VPN implementation based on lightway by ExpressVPN - [check out](https://github.com/sheharyaar/lagnos-vpn)
+
 
 # 1. VPNs
  
@@ -217,7 +219,7 @@ $ sudo ethtool -s eno2 speed 1000 duplex full autoneg on
 
 # 3. Slow WIFI Speed
 
-The institute has a fast Ethernet connection but a notoriously slow Wifi due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
+The institute has a fast Ethernet connection but a notoriously slow Wifi (tested at LBS ) due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
 
 
 
@@ -233,6 +235,7 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
           Tx excessive retries:2004  Invalid misc:5420   Missed beacon:0
 ```
 
+ℹ️ The below solutions will work only if your LAN is working at a good speed.
 
 ## 3.1 Best Solution
 
