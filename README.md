@@ -1,5 +1,6 @@
-# Index
+If you are interested in reading this page in blog style, head to : [iitkgp-network.netlify.app/](https://iitkgp-network.netlify.app/)
 
+# Index
 
 * 0\. [Introduction](#0-introduction)
 * 1\. [VPNs](#1-vpns)
@@ -41,7 +42,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 | ExpressVPN (Not free) | ![w] ![l] ![a] | ✔️ | Even though paid, its the fastest, most stable and the most secure option out there. |
 | OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] | ✔️ | This is slower than ExpressVPN but its very much feasible for using on PC/Laptop.<br/> It uses more CPU than ExpressVPN and Wireguard |
 
-ℹ️  For detailed comparison of OpenVPN on EC2, DigitalOcean and ExpressVPN for `gamers` and `casual users`, see [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn) section. 
+ℹ️ For detailed comparison of OpenVPN on EC2, DigitalOcean and ExpressVPN for `gamers` and `casual users`, see [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn) section. 
 
 - Working Solutions but **not recommended**:
 
@@ -73,57 +74,63 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 ## 1.1 Using OpenVPN
 
-<!---
-> ⚠️ Make sure to setup the server properly at your own risk. I am not liable to any charges you receive for your mistakes. Make sure to set a reminder to terminate your instance before 12 months end and use only one instance to avoid any charges after the number of free monthly credits expire. 
+### Legal Notice
+
+<h4>Disclaimer for IIT KGP Network repository</h4>
+
+<p>If you require any more information or have any questions about our site's disclaimer, please feel free to contact me by email at sheharyaar48@gmail.com.</p>
+
+<p>All the information on this website - https://iitkgp-network.netlify.app/ and sub-repositories of https://github.com/sheharyaar/ - is published in good faith and for general information purpose only. These does not make any warranties about the completeness, reliability and accuracy of this information. Any action you take upon the information you find on this website (IIT KGP Network) and the repositories (github.com/sheharyaar) , is strictly at your own risk. The author will not be liable for any losses and/or damages in connection with the use of our website.</p>
+
+<p>From my website and repositories, you can visit other websites by following hyperlinks to such external sites. While I strive to provide only quality links to useful and ethical websites, I have no control over the content and nature of these sites. These links to other websites do not imply a recommendation for all the content found on these sites. Site owners and content may change without notice and may occur before we have the opportunity to remove a link which may have gone 'bad'.</p>
+
+<p>Please be also aware that when you leave my website and repositories, other sites may have different privacy policies and terms which are beyond my control. Please be sure to check the Privacy Policies of these sites as well as their "Terms of Service" before engaging in any business or uploading any information.</p>
+
+<h5>Consent</h5>
+
+<p>By using my website and repositories, you hereby consent to our disclaimer and agree to its terms. By using my resources you are also subjected to the laws of India - Information Technology Act, 2000.</p>
 
 ### Step 1: Get an AWS account
 
+> ⚠️ Make sure to setup the server properly at your own risk. I am not liable to any charges you receive for your mistakes. First watch video about Billing here - [to be updated]().
+
 Watch this video on how to create a free AWS account - [Create new AWS account](https://www.youtube.com/watch?v=gA9pl-A9gDM). Remember this step requires you to have a debit card (Mastercard, American Express or Visa).
+
 
 ### Step 2: Create a free ec2 instance
 
-Watch this video on how to create an ec2 instance- [AWS Launch EC2 Instance](https://www.youtube.com/watch?v=sRRO5TEGfY4).<br/>
-Remember to use the server location as Mumbai. Ignore the setup related to setting up webserver. Stop after the SSH step.
+Watch this video on how to create an ec2 instance- [To be updated]().
 
-In the video part - [here](https://youtu.be/sRRO5TEGfY4?t=286) make sure to select "Add Rule" and add a "Custom TCP Port" with the port number 443 and under "Source" select "Anywhere IPv4".
-
-> The further 2 steps are from a blog, [IIT KGP: Bypassing network restrictions without compromising on internet speed by Anjay Goel](https://anjaygoel.github.io/posts/IIT-KGP-Bypass-Internet-Restrictions/#step-3-setting-up-openvpn-access-server) 
+> The further 2 steps are derived from a blog, [IIT KGP: Bypassing network restrictions without compromising on internet speed by Anjay Goel](https://anjaygoel.github.io/posts/IIT-KGP-Bypass-Internet-Restrictions/#step-3-setting-up-openvpn-access-server) 
 
 ### Step 3: Setting Up OpenVPN Access Server:
 
-*   Thanks to a few popular installer scripts, installing an OpenVPN server is straightforward once you have ssh’ed into the remote machine. Follow the steps in either of these scripts to install the VPN server on the remote machine.
-    *   [Option 1](https://github.com/angristan/openvpn-install) (This one worked perfectly for me!)
-        
-    *   [Option 2](https://github.com/Nyr/openvpn-install)
-        
-        **Note**: Choose the port you opened earlier (80 or 443) and TCP protocol as UDP doesn’t work.
-        
-*   Run the same script to generate new clients (you will need a unique client for each device that’s going to be connected to the VPN)
-    
-*   Now copy the client ovpn files to your device using scp:
-    
-    `$ scp -i /path/to/privatekey <username>@<host>:/path/to/ovpn_file ~/Documents/`
-    
-*   To start/stop/check status of open-vpn server use `systemctl`:
-    
-    `$ sudo systemctl start/stop/status openvpn@server.service`
-    
+You will need mobile hotspot for this setup.
+To setup OpenVPN Access Server, watch this video - [To be updated]().
 
-### Step 4: Connecting to VPN on client devices:
+### Step 4: Download ovpn files
 
-*   **Android**: Copy the ovpn file to the device and download a client. There are two options:
+*   **Linux**: Run the command - `scp -i /path/to/privatekey <username>@<host>:/path/to/ovpn_file ~/Documents/`, the key will be downloaded in Documents.
     
-    *   [Official Client](https://play.google.com/store/apps/details?id=net.openvpn.openvpn)
-    *   [Open Source Client](https://play.google.com/store/apps/details?id=de.blinkt.openvpn)
-    
-    I prefer the open-source client as it allows you to choose which apps use VPN and which don’t selectively. Now run the client, load the ovpn file and connect. And you are done.
+*   **Windows**: Watch this video here - [To be updated]().
+
+*   **Android**: See the windows/linux step and then transfer the downloaded android.ovpn to phone via Telegram/Bluetooth/Mail or whatever to a folder in your android.
+
+### Step 5: Connecting to VPN on client devices:
+
+*   **Android**: Download [Open VPN Connect](https://play.google.com/store/apps/details?id=net.openvpn.openvpn&hl=en_IN&gl=US) app from Play Store. Open the app and after going throught the first screen, got to **Files** tab of the app, import the ovpn file and connect.
     
 *   **Linux**: In many distros, you can go to the network manager and import the ovpn file. If not then install OpenVPN (`$ sudo apt-get install openvpn`) and run using `$ sudo openvpn --config /path/to/config.ovpn`.
     
 *   **Windows**: Download the [official client](https://openvpn.net/client-connect-vpn-for-windows/), import the ovpn file and run.
--->
 
-To be re-uploaded soon with better tutorial, bill management and a legal notice.
+### Step 6: Bill Management
+
+This is a very important setup, to avoid any extra charges from your debit card. Watch this video - [To be updated](). <br/>
+Remember to use only one instance. <br/>
+Remember that bandwidth is _**free upto 100GB per month**_, so its better not to waste resource on the vpn. Use it for daily usages like whatsapp, discord, etc. Prevent torrenting, etc. which can eat up resources.<br/>
+Remember to check your usage weekly/biweekly as shown in the video.<br/><br/>
+If in any case you have to stop an instance forcibly, do it to be on the safe side.
 
 ## 1.2 Observation : ExpressVPN works best
 
