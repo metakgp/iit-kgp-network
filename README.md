@@ -92,7 +92,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 ### Step 1: Get an AWS account
 
-> ⚠️ Make sure to setup the server properly at your own risk. I am not liable to any charges you receive for your mistakes. First watch video about Billing here - [to be updated]().
+> ⚠️ Make sure to setup the server properly at your own risk. I am not liable to any charges you receive for your mistakes. First watch video about Billing here - [Billing and Terminating Instances](https://www.youtube.com/watch?v=Ptij0mq1Mv4).
 
 Watch this video on how to create a free AWS account - [Create new AWS account](https://www.youtube.com/watch?v=gA9pl-A9gDM). Remember this step requires you to have a debit card (Mastercard, American Express or Visa).
 
@@ -126,7 +126,7 @@ To setup OpenVPN Access Server, watch this video - [Steps to create OpenVPN Serv
 
 ### Step 6: Bill Management
 
-This is a very important setup, to avoid any extra charges from your debit card. Watch this video - [To be updated](). <br/>
+This is a very important setup, to avoid any extra charges from your debit card. Watch this video - [Billing and Terminating Instances](https://www.youtube.com/watch?v=Ptij0mq1Mv4). <br/>
 Remember to use only one instance. <br/>
 Remember that bandwidth is _**free upto 100GB per month**_, so its better not to waste resource on the vpn. Use it for daily usages like whatsapp, discord, etc. Prevent torrenting, etc. which can eat up resources.<br/>
 Remember to check your usage weekly/biweekly as shown in the video.<br/><br/>
