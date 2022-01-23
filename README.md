@@ -99,20 +99,20 @@ Watch this video on how to create a free AWS account - [Create new AWS account](
 
 ### Step 2: Create a free ec2 instance
 
-Watch this video on how to create an ec2 instance- [To be updated]().
+Watch this video on how to create an ec2 instance- [Creating an AWS EC2 instance](https://www.youtube.com/watch?v=bJUBSqWaPBQ).
 
 > The further 2 steps are derived from a blog, [IIT KGP: Bypassing network restrictions without compromising on internet speed by Anjay Goel](https://anjaygoel.github.io/posts/IIT-KGP-Bypass-Internet-Restrictions/#step-3-setting-up-openvpn-access-server) 
 
 ### Step 3: Setting Up OpenVPN Access Server:
 
 You will need mobile hotspot for this setup.
-To setup OpenVPN Access Server, watch this video - [To be updated]().
+To setup OpenVPN Access Server, watch this video - [Steps to create OpenVPN Server on AWS](https://www.youtube.com/watch?v=7vxWiIRWwF4).
 
 ### Step 4: Download ovpn files
 
 *   **Linux**: Run the command - `scp -i /path/to/privatekey <username>@<host>:/path/to/ovpn_file ~/Documents/`, the key will be downloaded in Documents.
     
-*   **Windows**: Watch this video here - [To be updated]().
+*   **Windows**: Skip this section.
 
 *   **Android**: See the windows/linux step and then transfer the downloaded android.ovpn to phone via Telegram/Bluetooth/Mail or whatever to a folder in your android.
 
@@ -122,7 +122,7 @@ To setup OpenVPN Access Server, watch this video - [To be updated]().
     
 *   **Linux**: In many distros, you can go to the network manager and import the ovpn file. If not then install OpenVPN (`$ sudo apt-get install openvpn`) and run using `$ sudo openvpn --config /path/to/config.ovpn`.
     
-*   **Windows**: Download the [official client](https://openvpn.net/client-connect-vpn-for-windows/), import the ovpn file and run.
+*   **Windows**: Download the [official client](https://openvpn.net/client-connect-vpn-for-windows/), import the ovpn file and run - watch video here - [Steps to connect to OpenVPN](https://www.youtube.com/watch?v=P2SroQ_pzPU)
 
 ### Step 6: Bill Management
 
