@@ -1,3 +1,7 @@
+[![forthebadge](https://forthebadge.com/images/badges/made-with-markdown.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
+
+
 If you are interested in reading this page in blog style, head to : [iitkgp-network.netlify.app/](https://iitkgp-network.netlify.app/)
 
 # Index
