@@ -128,6 +128,11 @@ Express VPN works and it works damn fast - it uses `Lightway Protocol` whose cor
 
 My speculation is that it runs in TCP Mode and its fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
 
+ExpressVPN (the open Sourced wrapper) uses the following :
+- `wolfSSL` : a lightweight crossplatform SSL library for security
+- `libhelium` : ExpressVPN's internal API to call wolfSSL and manage robustness of the network
+- `libuv` : To manage crossplatform asynchronous IO as backend server.
+
 
 > I will try to implement soon my own lightway based VPN. So do checkout this page in future too!
 
