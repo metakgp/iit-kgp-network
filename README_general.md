@@ -17,7 +17,7 @@
 - SetupVPN
 - HoxxVPN (Browser Version)
 
-**TCP** based VPNs that work on port `443` or '80' will only work.
+**TCP** based VPNs that work on port `443` or `80` will only work.
 
 ## 1.1 Using OpenVPN
 
