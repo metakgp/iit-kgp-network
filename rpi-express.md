@@ -22,7 +22,7 @@
 # Method:
 
 The method is very trivial to understand, just the setup was a bit tough ( for me :D ) <br/>
-<img src="./piLan-img.jpg" width=900px height=400px />
+<img src="images/piLan-img.jpg" width=900px height=400px />
 
 # Tech Stack:
 
