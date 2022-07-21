@@ -134,7 +134,7 @@ Before concluding that there is issue with the port, make sure to check the foll
 
 Make sure your cable is CAT 5e and better (6, 6e, etc.) that you can get easily in TechM. 
 
-<img src="cat-cables.png" />
+<img src="images/cat-cables.png" />
 
 
 ### 2.2 Ethernet Adapter properties :
@@ -205,7 +205,7 @@ $ sudo ethtool -s eno2 speed 1000 duplex full autoneg on
 
 #### For Windows users : [Follow this guide](https://docs.microsoft.com/en-us/azure/devops/reference/xml/configure-network-adapter-automatically-adjust-speed?view=tfs-2013). **But**, in the last step instead of `Auto`, select `1.0 Gbps Full Duplex`.
 
-<img src="lan-full.png"/>
+<img src="images/lan-full.png"/>
 
 > Note: If still the network is slow, then it must be the issue with the port or the entire network is slow due to maintainence.
 
@@ -234,7 +234,7 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
 
 The current laptops either use Wifi 5 or Wifi 6. The can be summarised as follows : 
 
-<img src="wifi5-vs-wifi6.jpg" />
+<img src="images/wifi5-vs-wifi6.jpg" />
 
 
 Source : [What’s the Difference Between Wi-Fi 5 and Wi-Fi 6?](https://www.mwrf.com/technologies/systems/article/21849959/whats-the-difference-between-wifi-5-and-wifi-6)
@@ -384,6 +384,6 @@ A great vote of thanks to the following contributors :
 <h3 align="center">Thank You for reading and contributing! ❤️❤️❤️ </h3>
 
 <!-- Icons Load -->
-[w]:./window.png 
-[l]:./linux.png
-[a]:./android.png
+[w]:./images/window.png 
+[l]:./images/linux.png
+[a]:./images/android.png
