@@ -384,6 +384,6 @@ A great vote of thanks to the following contributors :
 <h3 align="center">Thank You for reading and contributing! ❤️❤️❤️ </h3>
 
 <!-- Icons Load -->
-[w]:./window.png 
-[l]:./linux.png
-[a]:./android.png
+[w]:./images/window.png 
+[l]:./images/linux.png
+[a]:./images/android.png
