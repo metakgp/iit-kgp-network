@@ -77,3 +77,16 @@ Buy a good 300Mbps or (1 Gbps if u are rich) and then use ethernet interface to 
 - When asked for Connection type, select any of the following available : `bridge`, `ethernet bridgs`.
 - Then setup your wifi properties
 - If asked for DNS settings, select `automatic`, otherwise use the DNS address as : `127.0.0.53`
+
+# 4. Credits
+
+A great vote of thanks to the following contributors :
+- Ishan Manchanda ([@IshanManchanda](https://github.com/IshanManchanda)) - Contribution to the list of working VPNs.
+- Soham Sen ([@FadedCoder](https://github.com/FadedCoder)) - Testing UDP and TCP on external network on private ports via `netcat`.
+- Rajiv Harlalka ([@rajivharlalka](https://github.com/rajivharlalka)) and Chirag Ghosh ([@chirag828049](https://github.com/chirag828049)) - Helping me with OpenVPN Setup.
+- Anjay Goel ([@AnjayGoel](https://github.com/AnjayGoel)) for his intuitive blog on setting up OpenVPN Server.
+- Arpit Bhardwaj ([@proffapt](https://github.com/proffapt)) for helping to organize the repository and make it more accessible.
+
+***
+<h3 align="center">Thank You for reading and contributing! ❤️❤️❤️ </h3>
+
