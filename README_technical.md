@@ -56,6 +56,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 |---|---|---| --- |
 | Wireguard hosted on any server | ![w] ![l] ![a] | ❌ | Uses UDP, which is blocked. More about this under [Wireguard](#43-wireguard) section |
 | Warp (1.1.1.1) | ![w] ![l] ![a] | ❌ | Uses Wireguard internally |
+| SurfShark | ![w] ![l] ![a] | ❌ | Uses Wireguard internally. Main hope was it's network masking, but apparently that failed too; the vpn was not able to connect. |
 | VPNHub |  ![a] | ❌ | Could have worked by changing the settings, but that is for paid users only. |
 | Tor | ![w] ![l] ![a] | ❌ | Tor commonly uses ports 9001 and 9030 for network traffic and directory information - [source](https://wiki.wireshark.org/Tor#protocol-dependencies), which are blocked on network. See more about blocked ports under [Packet Filtering](#41-packet-filtering). |
 | NordVpn | ![w] ![a] | ❔ | Uses NordLymx (based on Wireguard) by default, it can work as it also supports OpenVPN. But it's paid |
