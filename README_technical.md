@@ -37,8 +37,9 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
-| ExpressVPN (Not free) | ![w] ![l] ![a] | ✔️ | Even though paid, its the fastest, most stable and the most secure option out there. |
-| OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] | ✔️ | This is slower than ExpressVPN but its very much feasible for using on PC/Laptop.<br/> It uses more CPU than ExpressVPN and Wireguard |
+| ExpressVPN (Not free) | ![w] ![l] ![a] ![m] | ✔️ | Even though paid, its the fastest, most stable and the most secure option out there. |
+| OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] ![m] | ✔️ | This is slower than ExpressVPN but its very much feasible for using on PC/Laptop.<br/> It uses more CPU than ExpressVPN and Wireguard |
+| NoCardVPN |  ![a] | ✔️ | Works like a charm with no significant loss in speed, but have to manually add connection time(10/20/30/40/60 mins depending on your luck).. during which they serve ads for the survival of the project since it is completely free on user's end. |
 
 ℹ️ For detailed comparison of OpenVPN on EC2, DigitalOcean and ExpressVPN for `gamers` and `casual users`, see [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn) section. 
 
@@ -47,19 +48,20 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
 | Psiphon | ![a] | ✅ | Uses `L2TP/IPsec`. For more info on protocols see [VPN Protocols](#42-vpn-protocols) section.<br/>Slow and requires more CPU consumption. |
-| SetupVPN | ![w] ![l] | ⚠️ | No information on which protocols are used.<br/>Maybe unsafe.<br/>Full services for paid users.
-| HoxxVPN | ![w] ![l] | ⚠️ | It's not a VPN, its more like a proxy for PC. For browsers, it uses `http tunneling`.<br/>Its unsafe as it uses 4096-RSA, which has already been cracked.
+| SetupVPN | ![w] ![l] ![m] | ⚠️ | No information on which protocols are used.<br/>Maybe unsafe.<br/>Full services for paid users.
+| HoxxVPN | ![w] ![l] ![m] | ⚠️ | It's not a VPN, its more like a proxy for PC. For browsers, it uses `http tunneling`.<br/>Its unsafe as it uses 4096-RSA, which has already been cracked.
 
 - Not working or untested:
 
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
-| Wireguard hosted on any server | ![w] ![l] ![a] | ❌ | Uses UDP, which is blocked. More about this under [Wireguard](#43-wireguard) section |
-| Warp (1.1.1.1) | ![w] ![l] ![a] | ❌ | Uses Wireguard internally |
+| Wireguard hosted on any server | ![w] ![l] ![a] ![m] | ❌ | Uses UDP, which is blocked. More about this under [Wireguard](#43-wireguard) section |
+| Warp (1.1.1.1) | ![w] ![l] ![a] ![m] | ❌ | Uses Wireguard internally |
+| SurfShark | ![w] ![l] ![a] ![m] | ❌ | Uses Wireguard internally. Main hope was it's network masking, but apparently that failed too; the vpn was able to connect to only one location out of 67 tested locations with one specific port only (UK port 80), that too with a speed of 6mbps(OOKLA). |
 | VPNHub |  ![a] | ❌ | Could have worked by changing the settings, but that is for paid users only. |
-| Tor | ![w] ![l] ![a] | ❌ | Tor commonly uses ports 9001 and 9030 for network traffic and directory information - [source](https://wiki.wireshark.org/Tor#protocol-dependencies), which are blocked on network. See more about blocked ports under [Packet Filtering](#41-packet-filtering). |
-| NordVpn | ![w] ![a] | ❔ | Uses NordLymx (based on Wireguard) by default, it can work as it also supports OpenVPN. But it's paid |
-| HotspotShield | ![w] ![l] | ❔ | Not yet tested, its paid |
+| Tor | ![w] ![l] ![a] ![m] | ❌ | Tor commonly uses ports 9001 and 9030 for network traffic and directory information - [source](https://wiki.wireshark.org/Tor#protocol-dependencies), which are blocked on network. See more about blocked ports under [Packet Filtering](#41-packet-filtering). |
+| NordVpn | ![w] ![a] ![l] ![m] | ❔ | Uses NordLymx (based on Wireguard) by default, it can work as it also supports OpenVPN. But it's paid |
+| HotspotShield | ![w] ![l] ![a] ![m] | ❔ | Not yet tested, its paid |
 
 ❔ : Untested
 
@@ -388,3 +390,4 @@ A great vote of thanks to the following contributors :
 [w]:./images/window.png 
 [l]:./images/linux.png
 [a]:./images/android.png
+[m]:./images/macintosh.png
