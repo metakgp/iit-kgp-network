@@ -40,6 +40,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 | ExpressVPN (Not free) | ![w] ![l] ![a] ![m] | ✔️ | Even though paid, its the fastest, most stable and the most secure option out there. |
 | OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] ![m] | ✔️ | This is slower than ExpressVPN but its very much feasible for using on PC/Laptop.<br/> It uses more CPU than ExpressVPN and Wireguard |
 | NoCardVPN |  ![a] | ✔️ | Works like a charm with no significant loss in speed, but have to manually add connection time(10/20/30/40/60 mins depending on your luck).. during which they serve ads for the survival of the project since it is completely free on user's end. |
+| NoCardVPN |  ![w] ![l] ![a] ![m] | ✔️ | Its paid (5€), But it works very well and securely in OpenVPN mode with TCP port 443 and bridging mode. Note that Mullvad has no servers in India, so gaming is basically impossible since the ping will be too high and Anticheat may prevent you. |
 
 ℹ️ For detailed comparison of OpenVPN on EC2, DigitalOcean and ExpressVPN for `gamers` and `casual users`, see [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn) section. 
 
@@ -342,6 +343,7 @@ The testing was done on a couple of devices from the campus ( LBS Hall ). Device
 | ExpressVPN | 600 Mbps | 500-550 Mbps |
 | OpenVPN - AWS ec2 | 600 Mbps | 150 Mbps |
 | openVPN - Digital Ocean | 600 Mbps | 200 Mbps |
+| Mullvad (OpenVPN) - singapore | 100 Mbps | 50 Mbps |
 
 - For gamers 😎
 
