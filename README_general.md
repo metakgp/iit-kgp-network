@@ -12,6 +12,7 @@
 
 - ExpressVPN (Not free)
 - OpenVPN hosted on DigitalOcean or AWS ec2 
+- SecureVPN(free user) for android.
 
 - Psiphon
 - SetupVPN
@@ -74,7 +75,7 @@ To use Wifi on your devices :
 Buy a good 300Mbps or (1 Gbps if u are rich) and then use ethernet interface to distribute internet wia the wifi interface.<br><br>
 - Reset the router if its not new
 - Go to setup after connecting to the internet
-- When asked for Connection type, select any of the following available : `bridge`, `ethernet bridgs`.
+- When asked for Connection type, select any of the following available : `bridge`, `ethernet bridge`.
 - Then setup your wifi properties
 - If asked for DNS settings, select `automatic`, otherwise use the DNS address as : `127.0.0.53`
 

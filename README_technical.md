@@ -39,8 +39,9 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 |---|---|---| --- |
 | ExpressVPN (Not free) | ![w] ![l] ![a] ![m] | ✔️ | Even though paid, its the fastest, most stable and the most secure option out there. |
 | OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] ![m] | ✔️ | This is slower than ExpressVPN but its very much feasible for using on PC/Laptop.<br/> It uses more CPU than ExpressVPN and Wireguard |
-| NoCardVPN |  ![a] | ✔️ | Works like a charm with no significant loss in speed, but have to manually add connection time(10/20/30/40/60 mins depending on your luck).. during which they serve ads for the survival of the project since it is completely free on user's end. |
 | Mullvad |  ![w] ![l] ![a] ![m] | ✔️ | Its paid (5€), But it works very well and securely in OpenVPN mode with TCP port 443 and bridging mode. Note that Mullvad has no servers in India, so gaming is basically impossible since the ping will be too high and Anticheat may prevent you. |
+| SecureVPN |  ![a] | ✔️ | Use its free plan. The free plan will suffice the use case on mobile devices; Select the free server with ads and voila you will be connected and no need to upgrade your time as in NoCardVPN; you will be shown ads only when you open the app, so connect it and never open it again. Speed will be highly reduced but suffice for WhatsApp and normal video streaming. |
+| NoCardVPN |  ![a] | ✔️ | Works like a charm with no significant loss in speed, but have to manually increase connection time (10/20/30/40/60 mins depending on your luck; will disconnect after that time is over) during which they serve ads for the survival of the project since it is completely free on user's end. |
 
 ℹ️ For detailed comparison of OpenVPN on EC2, DigitalOcean and ExpressVPN for `gamers` and `casual users`, see [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn) section. 
 
