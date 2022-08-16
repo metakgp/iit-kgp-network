@@ -336,7 +336,7 @@ Resources Used:
 [https://encomhat.com/2021/07/wireguard-over-tcp/](https://encomhat.com/2021/07/wireguard-over-tcp/)
 
 
-## 4.4 OpenVPN vs ExpressVPN
+## 4.4 OpenVPN vs ExpressVPN vs Speedify
 <!-- Complete comparison of speed in games and casual too -->
 The testing was done on a couple of devices from the campus ( LBS Hall ). Devices being - ROG Strix G15 2020, Aspitre 7 and MSI GL65 Leopard.
 
