@@ -8,16 +8,16 @@
 
 # 1. VPNs
  
-- **Working VPNs**
+**Working VPNs**
 
-- Speedify (Not free)
-- ExpressVPN (Not free)
-- OpenVPN hosted on DigitalOcean or AWS ec2 
-- SecureVPN(free user) for android.
-- NoCardVPN (android)
-- Psiphon
-- SetupVPN
-- HoxxVPN (Browser Version)
+- [Speedify](https://speedify.com/) (Not free)
+- [ExpressVPN](https://www.expressvpn.com/) (Not free)
+- [OpenVPN](https://openvpn.net/) hosted on [DigitalOcean](https://www.digitalocean.com/) or [AWS ec2](https://aws.amazon.com/ec2/)
+- [SecureVPN](https://play.google.com/store/apps/details?id=com.fast.free.unblock.secure.vpn&hl=en_IN&gl=US) (free user)
+- [NoCardVPN](https://play.google.com/store/search?q=no%20cardvpn&c=apps&hl=en_IN&gl=US)
+- [Psiphon](https://play.google.com/store/search?q=psiphon&c=apps&hl=en_IN&gl=US)
+- [SetupVPN](https://chrome.google.com/webstore/detail/setupvpn-lifetime-free-vp/oofgbpoabipfcfjapgnbbjjaenockbdp)
+- [HoxxVPN](https://chrome.google.com/webstore/detail/hoxx-vpn-proxy/nbcojefnccbanplpoffopkoepjmhgdgh)
 
 **TCP** based VPNs that work on port `443` or `80` will only work.
 
