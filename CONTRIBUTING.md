@@ -10,13 +10,13 @@ For all systems :
 
 :warning: DNS Leak test is important as the institute does filter DNS requests. Please don't open any blocked website right away before check the DNS Leak Test. First perform the test, then verify the IP location at atleast 2 website service online.
 
-For Linux tests only :
+For Linux/MacOS tests only :
 
 - Name of the DNS resolver used by your system.
 - Contents of `/etc/resolv.conf` before and after using the vpn.
-- `iptables` rules before and after using the VPN.
+- `iptables`(for Linux), `pf`(for MacOS) rules before and after using the VPN.
 
-ℹ️ VPN Tests on Linux/MacOS is preferred as it will provide much more information than the other OS.
+ℹ️ VPN Tests on Linux/MacOS is preferred as it will provide much more information than other OSs.
 
 For protocol testing tasks, please attach the following:
 - The method of testing
