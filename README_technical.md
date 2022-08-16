@@ -3,7 +3,7 @@
 * 0\. [Introduction](#0-introduction)
 * 1\. [VPNs](#1-vpns)
     * 1.1 [Using OpenVPN](#11-using-openvpn)
-    * 1.2 [Observation : ExpressVPN works best](#12-observation--expressvpn-works-best)
+    * 1.2 [Observation : ExpressVPN and Speedify work best](#12-observation--expressvpn-and-speedify-work-best)
 * 2\. [Slow LAN Speed](#2-slow-lan-speed)
 * 3\. [Slow WIFI Speed](#3-slow-wifi-speed)
     * 3.1 [Best Solution](#31-best-solution)
@@ -38,7 +38,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
 | Speedify (Not free &#183; 2gb/mo free-trial) | ![w] ![l] ![a] ![m] | ✔️ | It's the best -- after ExpressVPN removing its servers from India; with a latency of around 40ms(tested 4 times; exhausting its free-user plan) and a speed of 450 Mbps on an average (source: Ookla; where it was around 700+ Mbps earlier) which makes it suitable for gaming and every other purpose; and its early plan is similar to that of ExpressVPN but here comes the twist, Speedify comes with 3-years plan option saving you 4.8k INR in 3 years(as compared to ExpressVPN)! |
-| ExpressVPN (Not free) | ![w] ![l] ![a] ![m] | ✔️ | Even though paid, it's the fastest, most stable and the most secure option out there. |
+| ExpressVPN (Not free) | ![w] ![l] ![a] ![m] | ✔️ | Even though paid, it's fast, stable and the secure option out in the internet but with [Update in Indian laws to store logs for servers in India](https://www.techradar.com/news/any-vpn-with-servers-in-india-must-now-store-activity-logs-on-users), ExpressVPN has removed its servers and the latency has been increased upto 120ms thus making it unsuitable for gaming. |
 | OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] ![m] | ✔️ | This is slower than ExpressVPN but it's very much feasible for using on PC/Laptop.<br/> It uses more CPU than ExpressVPN and Wireguard |
 | Mullvad |  ![w] ![l] ![a] ![m] | ✔️ | It's paid (5€), But it works very well and securely in OpenVPN mode with TCP port 443 and bridging mode. Note that Mullvad has no servers in India, so gaming is basically impossible since the ping will be too high and Anticheat may prevent you. |
 | SecureVPN |  ![a] | ✔️ | Use its free plan. The free plan will suffice the use case on mobile devices; Select the free server with ads and voila you will be connected and no need to upgrade your time as in NoCardVPN; you will be shown ads only when you open the app, so connect it and never open it again. Speed will be highly reduced but suffice for WhatsApp and normal video streaming. |
@@ -72,7 +72,8 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 #### Conclusion:
 
 - **UDP** based VPNs don't work because UDP is dropped (see [Packet Filtering](#41-packet-filtering)) unless some tunneling is used.
-- **TCP** based VPNs work on port `443` as it is allowed. Connection on other ports are reset ( see - issue[#2](https://github.com/sheharyaar/vpn/issues/2) ). OpenVPN, ExpressVPN are the fastest **and** the most secure VPNs available.
+- **TCP** based VPNs work on port `443` as it is allowed. Connection on other ports are reset ( see - issue[#2](https://github.com/sheharyaar/vpn/issues/2) ).<br> 
+- **OpenVPN, ExpressVPN and Speedify** are the fastest **and** the most secure VPNs available.
 
 
 ## 1.1 Using OpenVPN
@@ -97,17 +98,19 @@ To setup OpenVPN Access Server, watch this video - [Steps to create OpenVPN Serv
 
 ### Step 4: Download ovpn files
 
-*   **Linux**: Run the command - `scp -i /path/to/privatekey <username>@<host>:/path/to/ovpn_file ~/Documents/`, the key will be downloaded in Documents.
+*   **Linux/MacOS**: Run the command - `scp -i /path/to/privatekey <username>@<host>:/path/to/ovpn_file ~/Documents/`, the key will be downloaded in Documents.
     
 *   **Windows**: Skip this section.
 
-*   **Android**: See the windows/linux step and then transfer the downloaded android.ovpn to phone via Telegram/Bluetooth/Mail or whatever to a folder in your android.
+*   **Android**: See the windows/linux/MacOS step and then transfer the downloaded android.ovpn to phone via Telegram/Bluetooth/Mail or whatever to a folder in your android.
 
 ### Step 5: Connecting to VPN on client devices:
 
 *   **Android**: Download [Open VPN Connect](https://play.google.com/store/apps/details?id=net.openvpn.openvpn&hl=en_IN&gl=US) app from Play Store. Open the app and after going throught the first screen, got to **Files** tab of the app, import the ovpn file and connect.
     
 *   **Linux**: In many distros, you can go to the network manager and import the ovpn file. If not then install OpenVPN (`$ sudo apt-get install openvpn`) and run using `$ sudo openvpn --config /path/to/config.ovpn`.
+
+*   **MacOS**: You can either download the [tunnelblick](https://tunnelblick.net/downloads.html) GUI tool for importing the ovpn files or download the cli tool for openvpn via MacPorts or brew using `$ sudo ports install openvpn` and `$ brew install openvpn` respectively; then execute `$ sudo openvpn --config /path/to/config.ovpn`.
     
 *   **Windows**: Download the [official client](https://openvpn.net/client-connect-vpn-for-windows/), import the ovpn file and run - watch video here - [Steps to connect to OpenVPN](https://www.youtube.com/watch?v=P2SroQ_pzPU)
 
@@ -119,14 +122,15 @@ Remember that bandwidth is _**free upto 100GB per month**_, so its better not to
 Remember to check your usage weekly/biweekly as shown in the video.<br/><br/>
 If in any case you have to stop an instance forcibly, do it; to be on the safe side.
 
-## 1.2 Observation : ExpressVPN works best
+## 1.2 Observation : ExpressVPN and Speedify work best
 
 
-Express VPN works and it works damn fast - it uses `Lightway Protocol` whose core is open sourced now [here](https://github.com/expressvpn/lightway-core) - and a combination of `iptable` rules and `DNS Resolution`.
-
-
+Express VPN works and it works damn fast - it uses `Lightway Protocol` whose core is open sourced now [here](https://github.com/expressvpn/lightway-core) - and a combination of `iptable` rules and `DNS Resolution`.<br/>
 My speculation is that it runs in TCP Mode and it's fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
 
+
+Speedify improves the performance of even a single internet connection when faced with latency or packet loss. It intelligently makes up to 8 simultaneous TCP connections back to Speedify Servers on each of our internet connections allowing it to send and receive data redundantly or in parallel as needed.<br/>
+With the feature of utilising multiple interfaces(Wifi+Ethernet) together it can boost the speed to a considerable amount.
 
 > I will try to implement soon my own lightway based VPN. So do checkout this page in future too!
 
@@ -340,11 +344,14 @@ Resources Used:
 <!-- Complete comparison of speed in games and casual too -->
 The testing was done on a couple of devices from the campus ( LBS and JCB Hall ). Devices being - ROG Strix G15 2020, Aspitre 7 and MSI GL65 Leopard.
 
+⚠️**NOTE**: The following data for ExpressVPN is not updated after the removal of its servers from India due to [update in Indian laws to store logs for servers in India](https://www.techradar.com/news/any-vpn-with-servers-in-india-must-now-store-activity-logs-on-users); stay tuned will be updated soon.
+
+
 - For casual users 💻
 
 | Server | Download Speed Before | Download Speed After |
 | --- | --- | --- |
-| ExpressVPN | 600 Mbps | 500-550 Mbps |
+| ⚠️ ExpressVPN | 600 Mbps | 500-550 Mbps |
 | Speedify | <750 Mbps | 450-500 Mbps |
 | OpenVPN - AWS ec2 | 600 Mbps | 150 Mbps |
 | openVPN - Digital Ocean | 600 Mbps | 200 Mbps |
@@ -355,16 +362,19 @@ The testing was done on a couple of devices from the campus ( LBS and JCB Hall )
 CSGO Official Servers:
 | Server | Ping | Packet Loss | Remarks |
 | --- | --- |--- | --- |
-| ExpressVPN - Mumbai | 50-70 ms | Rare | It's Paid T_T | 
+| ⚠️ ExpressVPN - Mumbai | 50-70 ms | Rare | It's Paid T_T | 
 | OpenVPN - AWS ec2 | 60-80 ms| Rare | It's free for 1 year with 1 account. <br/> 4 people 4 years. Ez Katka 😄 |
 | OpenVPN - DigitalOcean | 130+ ms | 2-4 % | Don't use it, not worthy |
 
 Valorant
 | Server | Ping | Packet Loss | Remarks
 | --- | --- |--- | --- |
-| ExpressVPN - Mumbai | 50-80 ms | Rare | ✔️ 
+| ⚠️ ExpressVPN - Mumbai | 50-80 ms | Rare | ✔️ 
 | OpenVPN - AWS ec2 | 70-90 | Rare | ✔️ 💙
 | OpenVPN - DigitalOcean | 120+ ms | 5-6 % | 😞 |
+
+> Need testers for testing gaming on Speedify.
+
 
 As you could see, ExpressVPN maybe the best. Among AWS and DigitalOcean, `AWS` is much better as its servers are in Mumbai whereas for DigitalOcean, they are in Bangalore.
 
