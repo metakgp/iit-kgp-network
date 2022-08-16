@@ -23,7 +23,7 @@
 
 In this repo, I will write about the problems students face on campus network and attempt to provide solution (feasible or non feasible). The solutions end at Section 3.
 
-In Section 4, I will write in depth discussion on why does few protocols, which are really good, like Wireguard, UDP based VPNs, etc. do not work on campus network. Feel free to skip that section if you are not interested.
+In Section 4, I will write in depth discussion on why do few protocols, which are really good, like Wireguard, UDP based VPNs, etc. do not work on campus network. Feel free to skip that section if you are not interested.
 
 Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks to people who helped me in anyway.
 
@@ -37,14 +37,14 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
-| Speedify (Not free &#183; 2gb/mo free-trial) | ![w] ![l] ![a] ![m] | ✔️ | It's the best -- after ExpressVPN removing its servers from India; with a latency of around 40ms(tested 4 times; exhausting its free-user plan) and a speed of 450 Mbps on an avg. (source: Ookla; where it was around 700+ Mbps earlier) which makes it suitable for gaming and every other purpose; and its early plan is similar to that of ExpressVPN but here comes the twist, Speedify comes with 3-years plan option saving you 4.8k INR in 3 years(as compared to ExpressVPN)! |
+| Speedify (Not free &#183; 2gb/mo free-trial) | ![w] ![l] ![a] ![m] | ✔️ | It's the best -- after ExpressVPN removing its servers from India; with a latency of around 40ms(tested 4 times; exhausting its free-user plan) and a speed of 450 Mbps on an average (source: Ookla; where it was around 700+ Mbps earlier) which makes it suitable for gaming and every other purpose; and its early plan is similar to that of ExpressVPN but here comes the twist, Speedify comes with 3-years plan option saving you 4.8k INR in 3 years(as compared to ExpressVPN)! |
 | ExpressVPN (Not free) | ![w] ![l] ![a] ![m] | ✔️ | Even though paid, it's the fastest, most stable and the most secure option out there. |
 | OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] ![m] | ✔️ | This is slower than ExpressVPN but it's very much feasible for using on PC/Laptop.<br/> It uses more CPU than ExpressVPN and Wireguard |
 | Mullvad |  ![w] ![l] ![a] ![m] | ✔️ | It's paid (5€), But it works very well and securely in OpenVPN mode with TCP port 443 and bridging mode. Note that Mullvad has no servers in India, so gaming is basically impossible since the ping will be too high and Anticheat may prevent you. |
 | SecureVPN |  ![a] | ✔️ | Use its free plan. The free plan will suffice the use case on mobile devices; Select the free server with ads and voila you will be connected and no need to upgrade your time as in NoCardVPN; you will be shown ads only when you open the app, so connect it and never open it again. Speed will be highly reduced but suffice for WhatsApp and normal video streaming. |
-| NoCardVPN |  ![a] | ✔️ | Works like a charm with no significant loss in speed, but have to manually increase connection time (10/20/30/40/60 mins depending on your luck; will disconnect after that time is over) during which they serve ads for the survival of the project since it is completely free on user's end. |
+| NoCardVPN |  ![a] | ✔️ | Works like a charm with no significant loss in speed, but have to manually increase connection time (10/20/30/40/60 mins depending on your luck; else it will disconnect after that time is over) during which they serve ads for the survival of the project since it is completely free on user's end. |
 
-ℹ️ For detailed comparison of OpenVPN on EC2, DigitalOcean and ExpressVPN for `gamers` and `casual users`, see [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn) section. 
+ℹ️ For detailed comparison of OpenVPN on EC2, DigitalOcean and ExpressVPN for `gamers` and `casual users`, see [OpenVPN vs ExpressVPN vs Speedify](#44-openvpn-vs-expressvpn-vs-speedify) section. 
 
 - Working Solutions but **not recommended**:
 
@@ -52,7 +52,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 |---|---|---| --- |
 | Psiphon | ![a] | ✅ | Uses `L2TP/IPsec`. For more info on protocols see [VPN Protocols](#42-vpn-protocols) section.<br/>Slow and requires more CPU consumption. |
 | SetupVPN | ![w] ![l] ![m] | ⚠️ | No information on which protocols are used.<br/>Maybe unsafe.<br/>Full services for paid users.
-| HoxxVPN | ![w] ![l] ![m] | ⚠️ | It's not a VPN, its more like a proxy for PC. For browsers, it uses `http tunneling`.<br/>Its unsafe as it uses 4096-RSA, which has already been cracked.
+| HoxxVPN | ![w] ![l] ![m] | ⚠️ | It's not a VPN, its more like a proxy for PC. For browsers, it uses `http tunneling`.<br/>It's unsafe as; it uses 4096-RSA, which has already been cracked.
 
 - Not working or untested:
 
@@ -64,7 +64,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 | VPNHub |  ![a] | ❌ | Could have worked by changing the settings, but that is for paid users only. |
 | Tor | ![w] ![l] ![a] ![m] | ❌ | Tor commonly uses ports 9001 and 9030 for network traffic and directory information - [source](https://wiki.wireshark.org/Tor#protocol-dependencies), which are blocked on network. See more about blocked ports under [Packet Filtering](#41-packet-filtering). |
 | NordVpn | ![w] ![a] ![l] ![m] | ❔ | Uses NordLymx (based on Wireguard) by default, it can work as it also supports OpenVPN. But it's paid |
-| HotspotShield | ![w] ![l] ![a] ![m] | ❔ | Not yet tested, its paid |
+| HotspotShield | ![w] ![l] ![a] ![m] | ❔ | Not yet tested, it's paid |
 
 ❔ : Untested
 
@@ -72,7 +72,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 #### Conclusion:
 
 - **UDP** based VPNs don't work because UDP is dropped (see [Packet Filtering](#41-packet-filtering)) unless some tunneling is used.
-- **TCP** based VPNs work on port `443` as it is allowed. Connection on other ports are reset ( see - issue[#2](https://github.com/sheharyaar/vpn/issues/2) ). OpenVPN and ExpressVPN are the fastest **and** the most secure VPNs available.
+- **TCP** based VPNs work on port `443` as it is allowed. Connection on other ports are reset ( see - issue[#2](https://github.com/sheharyaar/vpn/issues/2) ). OpenVPN, ExpressVPN are the fastest **and** the most secure VPNs available.
 
 
 ## 1.1 Using OpenVPN
@@ -115,9 +115,9 @@ To setup OpenVPN Access Server, watch this video - [Steps to create OpenVPN Serv
 
 This is a very important setup, to avoid any extra charges from your debit card. Watch this video - [Billing and Terminating Instances](https://www.youtube.com/watch?v=Ptij0mq1Mv4). <br/>
 Remember to use only one instance. <br/>
-Remember that bandwidth is _**free upto 100GB per month**_, so its better not to waste resource on the vpn. Use it for daily usages like whatsapp, discord, etc. Prevent torrenting, etc. which can eat up resources.<br/>
+Remember that bandwidth is _**free upto 100GB per month**_, so its better not to waste resource on the VPN. Use it for daily usages like whatsapp, discord, etc. Prevent torrenting, etc. which can eat up resources.<br/>
 Remember to check your usage weekly/biweekly as shown in the video.<br/><br/>
-If in any case you have to stop an instance forcibly, do it to be on the safe side.
+If in any case you have to stop an instance forcibly, do it; to be on the safe side.
 
 ## 1.2 Observation : ExpressVPN works best
 
@@ -125,7 +125,7 @@ If in any case you have to stop an instance forcibly, do it to be on the safe si
 Express VPN works and it works damn fast - it uses `Lightway Protocol` whose core is open sourced now [here](https://github.com/expressvpn/lightway-core) - and a combination of `iptable` rules and `DNS Resolution`.
 
 
-My speculation is that it runs in TCP Mode and its fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
+My speculation is that it runs in TCP Mode and it's fast. But I need to verify this by looking at logs and iptable entries. I speculate that `Lightway UDP` doesn't work because I tried it specifically on the Android version of the app, it didn't connect at all where the TCP counterpart connected quickly.
 
 
 > I will try to implement soon my own lightway based VPN. So do checkout this page in future too!
@@ -144,7 +144,7 @@ Make sure your cable is CAT 5e and better (6, 6e, etc.) that you can get easily 
 
 ### 2.2 Ethernet Adapter properties :
 
-Its easy to check etehrnet properties of your ethernet adapter.<br/>
+It's easy to check properties of your ethernet adapter.<br/>
 
 #### For linux users
 
@@ -180,7 +180,7 @@ As you can see it shows `1000baseT/Full`. This means my adapter supports 1000 Mb
 
 #### For windows users: [Check this post](https://www.windowscentral.com/how-determine-wi-fi-and-ethernet-connection-speed-windows-10)
 
-ℹ️ If your speed is less than 1Gbps, check your laptop manual online. If it shows it supports 1Gbps, update your drivers.
+ℹ️ If your speed is less than 1Gbps, check about your laptop manually online. If it shows it supports 1Gbps, update your drivers.
 
 ### 2.3 Disbale auto-negotiation
 
@@ -216,7 +216,7 @@ $ sudo ethtool -s eno2 speed 1000 duplex full autoneg on
 
 # 3. Slow WIFI Speed
 
-The institute has a fast Ethernet connection but a notoriously slow Wifi (tested at LBS ) due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
+The institute has a fast Ethernet connection but a notoriously slow Wifi (95% of the cases) due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
 
 
 
@@ -282,7 +282,7 @@ For detailed config : Check out my post [here](./rpi-express.md).
 
 This section is a read for people who wish to know why various protocols like Wireguard or OpenVPN (UDP) did not work. Anything that is written here are my observations and may not be absolutely correct. If you find any error please open an issue and inform me about it to make this repository more accurate. This is going to be a long read, so buckle up 🚀.
 
-- There is packet filtering as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` ( which btw is very much vulnerable).  Credentials can be cracked easily and MITM (Man in the middle attacks) can be used against a nconenction. So it's better to use implement some security methods. For more info lookup : `chapcrack` on Google.
+- There is packet filtering as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` ( which btw is very much vulnerable).  Credentials can be cracked easily and MITM (Man in the middle attacks) can be used against a conenction. So it's better to implement some security methods. For more info lookup : `chapcrack` on Google.
 
 
 ## 4.1 Packet Filtering
@@ -313,7 +313,7 @@ Resources Used :
 [OpenVPN vs IPSec, WireGuard, L2TP, and IKEv2](https://restoreprivacy.com/vpn/openvpn-ipsec-wireguard-l2tp-ikev2-protocols/)<br/>
 [Best VPN Protocols: OpenVPN vs PPTP vs L2TP vs Others](https://thebestvpn.com/pptp-l2tp-openvpn-sstp-ikev2-protocols/)<br/>
 [Wireguard](https://www.wireguard.com/#about-the-project)<br/>
-[Lightway vs Wireguard vs OpenVPN - Youtube](https://www.youtube.com/watch?v=28e1sDvrkrk)
+[Lightway vs Wireguard vs OpenVPN - Youtube](https://www.youtube.com/watch?v=28e1sDvrkrk)<br/>
 [What kind of Encryption does Speedify use?](https://support.speedify.com/article/274-encryption#:~:text=For%20any%20recent%20phone%20or,cipher%20to%20protect%20your%20data.)
 
 And many more...
@@ -338,7 +338,7 @@ Resources Used:
 
 ## 4.4 OpenVPN vs ExpressVPN vs Speedify
 <!-- Complete comparison of speed in games and casual too -->
-The testing was done on a couple of devices from the campus ( LBS Hall ). Devices being - ROG Strix G15 2020, Aspitre 7 and MSI GL65 Leopard.
+The testing was done on a couple of devices from the campus ( LBS and JCB Hall ). Devices being - ROG Strix G15 2020, Aspitre 7 and MSI GL65 Leopard.
 
 - For casual users 💻
 
@@ -348,15 +348,15 @@ The testing was done on a couple of devices from the campus ( LBS Hall ). Device
 | Speedify | <750 Mbps | 450-500 Mbps |
 | OpenVPN - AWS ec2 | 600 Mbps | 150 Mbps |
 | openVPN - Digital Ocean | 600 Mbps | 200 Mbps |
-| Mullvad (OpenVPN) - singapore | 100 Mbps | 50 Mbps |
+| Mullvad (OpenVPN) - Singapore | 100 Mbps | 50 Mbps |
 
 - For gamers 😎
 
 CSGO Official Servers:
 | Server | Ping | Packet Loss | Remarks |
 | --- | --- |--- | --- |
-| ExpressVPN - Mumbai | 50-70 ms | Rare | Its Paid T_T | 
-| OpenVPN - AWS ec2 | 60-80 ms| Rare | Its free for 1 year with 1 account. <br/> 4 people 4 years. Ez Katka 😄 |
+| ExpressVPN - Mumbai | 50-70 ms | Rare | It's Paid T_T | 
+| OpenVPN - AWS ec2 | 60-80 ms| Rare | It's free for 1 year with 1 account. <br/> 4 people 4 years. Ez Katka 😄 |
 | OpenVPN - DigitalOcean | 130+ ms | 2-4 % | Don't use it, not worthy |
 
 Valorant
@@ -366,11 +366,11 @@ Valorant
 | OpenVPN - AWS ec2 | 70-90 | Rare | ✔️ 💙
 | OpenVPN - DigitalOcean | 120+ ms | 5-6 % | 😞 |
 
-As you could see, ExpressVPN maybe the best. Among AWS and DigitalOcean, `AWS` is much better as it's servers are in Mumbai whereas for DigitalOcean its in Bangalore.
+As you could see, ExpressVPN maybe the best. Among AWS and DigitalOcean, `AWS` is much better as its servers are in Mumbai whereas for DigitalOcean, they are in Bangalore.
 
 ## 4.5 Further Steps
 
-This repository is available for anyone who wishes to add upon this work or needs information for any purpose or maybe be implement own VPN. For me, I would love to research more on this topic and look for ways to improve the Internet situation at the campus. It was really difficult with bad network at the campus to be able to even talk with parents on video call as whatsapp and similar apps are blocked.
+This repository is available for anyone who wishes to add upon this work or needs information for any purpose or maybe is planning to implement their own VPN. For me, I would love to research more on this topic and look for ways to improve the Internet situation at the campus. It was really difficult with bad network at the campus to be able to even talk with parents on video call as whatsapp and similar apps are blocked.
 
 Beleiving in open source I hope someone will add value to this repository, so that even people with less technical experience can understand basic comparisons among the various servers and technologies.
 
