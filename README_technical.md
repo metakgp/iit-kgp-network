@@ -37,6 +37,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
+| Speedify (Not free &#183; 2gb/mo free-trial) | ![w] ![l] ![a] ![m] | ✔️ | It's the best -- after ExpressVPN removing its servers from India; with a latency of around 40ms(tested 4 times; exhausting it's free-user plan) and a speed of 450 Mbps on an avg. (source: Ookla; where it was around 700+ Mbps earlier) which makes it suitable for gaming and every other purpose; and its early plan is similar to that of ExpressVPN but here comes the twist, Speedify comes with 3-years plan option saving you 4.8k INR in 3 years(as compared to ExpressVPN)! |
 | ExpressVPN (Not free) | ![w] ![l] ![a] ![m] | ✔️ | Even though paid, its the fastest, most stable and the most secure option out there. |
 | OpenVPN hosted on DigitalOcean or AWS ec2 | ![w] ![l] ![a] ![m] | ✔️ | This is slower than ExpressVPN but its very much feasible for using on PC/Laptop.<br/> It uses more CPU than ExpressVPN and Wireguard |
 | Mullvad |  ![w] ![l] ![a] ![m] | ✔️ | Its paid (5€), But it works very well and securely in OpenVPN mode with TCP port 443 and bridging mode. Note that Mullvad has no servers in India, so gaming is basically impossible since the ping will be too high and Anticheat may prevent you. |
@@ -297,13 +298,14 @@ This section is a read for people who wish to know why various protocols like Wi
 
 |Rank||Speed|Stability|Security|Encryption|
 |---|--- |--- |--- |--- |--- |
-|1|ExpressVPN|Very Fast|Very Stable|High|WolfSSL|
-|2|WireGuard|Fast|Stable|High|ChaCha20|
-|3|OpenVPN|Fast|Very stable|Very high|160-bit, 256-bit|
-|4|IKEv2/IPSec|Fast|Very stable|High|256-bit|
-|5|L2TP/IPsec|Medium, due to double encapsulation|Stable|Medium|256-bit|
-|6|SSTP|Fast|Very stable|High|256-bit|
-|7|PPTP|Speedy, due to low encryption|Very stable|Weak|128-bit|
+|1|Speedify|Very Fast|Very Stable|Very High|AES128-GCM|
+|2|ExpressVPN|Very Fast|Very Stable|High|WolfSSL|
+|3|WireGuard|Fast|Stable|High|ChaCha20|
+|4|OpenVPN|Fast|Very stable|Very high|160-bit, 256-bit|
+|5|IKEv2/IPSec|Fast|Very stable|High|256-bit|
+|6|L2TP/IPsec|Medium, due to double encapsulation|Stable|Medium|256-bit|
+|7|SSTP|Fast|Very stable|High|256-bit|
+|8|PPTP|Speedy, due to low encryption|Very stable|Weak|128-bit|
 
 Resources Used :
 
@@ -312,6 +314,7 @@ Resources Used :
 [Best VPN Protocols: OpenVPN vs PPTP vs L2TP vs Others](https://thebestvpn.com/pptp-l2tp-openvpn-sstp-ikev2-protocols/)<br/>
 [Wireguard](https://www.wireguard.com/#about-the-project)<br/>
 [Lightway vs Wireguard vs OpenVPN - Youtube](https://www.youtube.com/watch?v=28e1sDvrkrk)
+[What kind of Encryption does Speedify use?](https://support.speedify.com/article/274-encryption#:~:text=For%20any%20recent%20phone%20or,cipher%20to%20protect%20your%20data.)
 
 And many more...
 
@@ -342,6 +345,7 @@ The testing was done on a couple of devices from the campus ( LBS Hall ). Device
 | Server | Download Speed Before | Download Speed After |
 | --- | --- | --- |
 | ExpressVPN | 600 Mbps | 500-550 Mbps |
+| Speedify | <750 Mbps | 450-500 Mbps |
 | OpenVPN - AWS ec2 | 600 Mbps | 150 Mbps |
 | openVPN - Digital Ocean | 600 Mbps | 200 Mbps |
 | Mullvad (OpenVPN) - singapore | 100 Mbps | 50 Mbps |

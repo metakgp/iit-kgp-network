@@ -10,9 +10,11 @@
  
 - **Working VPNs**
 
+- Speedify (Not free)
 - ExpressVPN (Not free)
 - OpenVPN hosted on DigitalOcean or AWS ec2 
 - SecureVPN(free user) for android.
+
 
 - Psiphon
 - SetupVPN
