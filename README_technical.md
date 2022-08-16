@@ -12,7 +12,7 @@
     * 4.1 [Packet Filtering](#41-packet-filtering)
     * 4.2 [VPN Protocols](#42-vpn-protocols)
     * 4.3 [Wireguard](#43-wireguard)
-    * 4.4 [OpenVPN vs ExpressVPN](#44-openvpn-vs-expressvpn)
+    * 4.4 [OpenVPN vs ExpressVPN vs Speedify](#44-openvpn-vs-expressvpn-vs-speedify)
     * 4.5 [Further Steps](#45-further-steps)
 * 5\. [Contributing](#5-contributing)
 * 6\. [Credits](#6-credits)
