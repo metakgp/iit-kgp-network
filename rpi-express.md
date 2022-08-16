@@ -1,7 +1,7 @@
 # Conclusion of this Project
 
 - The speed of the Wifi from Raspberry Pi is being capped by the Wifi Adapter present in Raspberry Pi 4B.
-- RPi 4B supports both 2.4 Ghz and 5Ghz but a band of both 20 Mhz and 40 Mhz. But the porblem is that it doesn't support channel numbers : `34`,`38`,`42`,`46`, etc. which are the `allowed channels to use 40/80 MHz in India`. That is why the speed is being capped at 54 Mb/s (Mb - Megabits) becuase we can use only 20MHz here. For complete list of allowed channels - [https://en.wikipedia.org/wiki/List_of_WLAN_channels](https://en.wikipedia.org/wiki/List_of_WLAN_channels).
+- RPi 4B supports both 2.4 Ghz and 5Ghz; band of both 20 Mhz and 40 Mhz. But the porblem is that it doesn't support channel numbers : `34`,`38`,`42`,`46`, etc. which are the `allowed channels to use 40/80 MHz in India`. That is why the speed is being capped at 54 Mb/s (Mb - Megabits) becuase we can use only 20MHz here. For complete list of allowed channels - [https://en.wikipedia.org/wiki/List_of_WLAN_channels](https://en.wikipedia.org/wiki/List_of_WLAN_channels).
 - Still the speed should have been 100Mbps but it is capped mainly because the Wifi adapter shares the same bus as USB 2.0 ( according to some articles )
 - Possible Solution : **Buy a USB 3.0 Wireless adapter which supports `AP (Access Point) Mode`, `802.11ac` and `40 MHz` at least.**
 
@@ -127,14 +127,14 @@ iface default inet dhcp
 
 # Know Issues and Bugs:
 
-- Express vpn DNS bug - Causes internet to not work. Cant connect to websites, but can ping to IP addresses. Due to not updating of dns server on the file `/etc/resolv.conf` due to the option `force_vpn_dns=true`.
+- Express vpn DNS bug - Causes internet to not work. Can't connect to websites, but can ping to IP addresses. DNS servers were not being updated in `/etc/resolv.conf` due to the option `force_vpn_dns=true`.
 
 ### Workaround :
 
-1. Expressvpn after connecting saves dns address in file at `/etc/resolv.conf.bak` or similar ( can be verified by viewing the file, the address should be of form 10.x.x.x ).
+1. ExpressVPN, after connecting saves DNS addresses in file at `/etc/resolv.conf.bak` or similar ( can be verified by viewing the file, the address should be of the form 10.x.x.x ).
 2. Now replace the configs by executing `sudo mv /etc/resolv.conf.bak /etc/resolv.conf`. Here `resolv.conf.bak` is the name of file obtained above.
-3. To let connected clients connect to internet on vpn edit the file `/etc/dnsmasq.conf` and edit the line 
+3. To let the clients connected to VPN, access the internet - edit the following line in `/etc/dnsmasq.conf`  
 ```console
 dhcp-option=6, <expressvpn dns server>
 ```
-and replace the with the DNS server obtained in step 1. Reload the dns service using `sudo systemctl restart dnsmasq.service` and disconnect and reconnect the clients<br/>
+by adding the DNS server obtained in step 1. Reload the DNS service using `sudo systemctl restart dnsmasq.service` and finally disconnect and reconnect the clients.
