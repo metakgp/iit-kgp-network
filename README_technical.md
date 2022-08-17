@@ -14,8 +14,6 @@
     * 4.3 [Wireguard](#43-wireguard)
     * 4.4 [OpenVPN vs ExpressVPN vs Speedify](#44-openvpn-vs-expressvpn-vs-speedify)
     * 4.5 [Further Steps](#45-further-steps)
-* 5\. [Contributing](#5-contributing)
-* 6\. [Credits](#6-credits)
 
 
 # 0. Introduction
@@ -384,24 +382,9 @@ This repository is available for anyone who wishes to add upon this work or need
 
 Beleiving in open source I hope someone will add value to this repository, so that even people with less technical experience can understand basic comparisons among the various servers and technologies.
 
-# 5. Contributing
-
-I appreciate feedback, correction and contribution to this repository! Before you get started, please see [CONTRIBUTING](./CONTRIBUTING.md)
-
-# 6. Credits
-
-A great vote of thanks to the following contributors :
-- Ishan Manchanda ([@IshanManchanda](https://github.com/IshanManchanda)) - Contribution to the list of working VPNs.
-- Soham Sen ([@Yureien](https://github.com/Yureien)) - Testing UDP and TCP on external network on private ports via `netcat`.
-- Rajiv Harlalka ([@rajivharlalka](https://github.com/rajivharlalka)) and Chirag Ghosh ([@chirag-ghosh](https://github.com/chirag-ghosh)) - Help with OpenVPN Setup.
-- Anjay Goel ([@AnjayGoel](https://github.com/AnjayGoel)) for his intuitive blog on setting up OpenVPN Server.
-- Arpit Bhardwaj ([@proffapt](https://github.com/proffapt)) for helping to organize the repository and make it more accessible.
-
 ***
 
 <h4 align="center">Dont't forget to visit my experimentation with Rapsberry Pi and ExpressVPN - <a href="./rpi-express.md">here</a></h4>
-
-<h3 align="center">Thank You for reading and contributing! ❤️❤️❤️ </h3>
 
 <!-- Icons Load -->
 [w]:./images/window.png 
