@@ -7,19 +7,19 @@ For general public: [General Readme](./README_general.md) \
 For people with technical knowledge: [Technical Readme](https://github.com/sheharyaar/iit-kgp-network/blob/main/README_technical.md) \
 Regarding Communication/Social Media aspect of the network: [IITKGP network and communication](https://gist.github.com/proffapt/0f032c3c48ec71b1c8dfe3f383b5431f)
 
-# Contributing
+## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request; make sure your pull request follows the guidlines mentioned in [Contribution Guidlines](./CONTRIBUTING.md). Aliter, you can just simply open an issue with the tag "enhancement".
 
 1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature-AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature-AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b feature`)
+3. Commit your Changes (`git commit -m 'Adding some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature`)
 5. Open a Pull Request
 
-# Credits
+## Credits
 
 A great vote of thanks to the following contributors :
 - Ishan Manchanda ([@IshanManchanda](https://github.com/IshanManchanda)) - Contribution to the list of working VPNs.
