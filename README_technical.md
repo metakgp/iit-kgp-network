@@ -4,16 +4,19 @@
 * 1\. [VPNs](#1-vpns)
     * 1.1 [Using OpenVPN](#11-using-openvpn)
     * 1.2 [Observation : ExpressVPN and Speedify work best](#12-observation--expressvpn-and-speedify-work-best)
-* 2\. [Slow LAN Speed](#2-slow-lan-speed)
-* 3\. [Slow WIFI Speed](#3-slow-wifi-speed)
-    * 3.1 [Best Solution](#31-best-solution)
-    * 3.2 [Other Solutions](#32-other-solutions)
-* 4\. [Discussion](#4-discussion)
-    * 4.1 [Packet Filtering](#41-packet-filtering)
-    * 4.2 [VPN Protocols](#42-vpn-protocols)
-    * 4.3 [Wireguard](#43-wireguard)
-    * 4.4 [OpenVPN vs ExpressVPN vs Speedify](#44-openvpn-vs-expressvpn-vs-speedify)
-    * 4.5 [Further Steps](#45-further-steps)
+* 2\. [Social Media and KGP Network](#2-social-media-and-kgp-network)
+    * 2.1 [Best Solution](#21-best-solution)
+    * 2.2 [Other Solutions](#22-other-solutions)
+* 3\. [Slow LAN Speed](#3-slow-lan-speed)
+* 4\. [Slow WIFI Speed](#4-slow-wifi-speed)
+    * 4.1 [Best Solution](#41-best-solution)
+    * 4.2 [Other Solutions](#42-other-solutions)
+* 5\. [Discussion](#5-discussion)
+    * 5.1 [Packet Filtering](#51-packet-filtering)
+    * 5.2 [VPN Protocols](#52-vpn-protocols)
+    * 5.3 [Wireguard](#53-wireguard)
+    * 5.4 [OpenVPN vs ExpressVPN vs Speedify](#54-openvpn-vs-expressvpn-vs-speedify)
+    * 5.5 [Further Steps](#55-further-steps)
 
 
 # 0. Introduction
@@ -48,7 +51,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 |VPN|Platform|Status| Reason |
 |---|---|---| --- |
-| [Psiphon](https://play.google.com/store/search?q=psiphon&c=apps&hl=en_IN&gl=US) | ![a] | ✅ | Uses `L2TP/IPsec`. For more info on protocols see [VPN Protocols](#42-vpn-protocols) section.<br/>Slow and requires more CPU consumption. |
+| [Psiphon](https://play.google.com/store/search?q=psiphon&c=apps&hl=en_IN&gl=US) | ![a] | ✔️ | Uses `L2TP/IPsec`. For more info on protocols see [VPN Protocols](#42-vpn-protocols) section.<br/>Slow and requires more CPU consumption. |
 | [SetupVPN](https://chrome.google.com/webstore/detail/setupvpn-lifetime-free-vp/oofgbpoabipfcfjapgnbbjjaenockbdp) | ![w] ![l] ![m] | ⚠️ | No information on which protocols are used.<br/>Maybe unsafe.<br/>Full services for paid users.
 | [HoxxVPN](https://chrome.google.com/webstore/detail/hoxx-vpn-proxy/nbcojefnccbanplpoffopkoepjmhgdgh) | ![w] ![l] ![m] | ⚠️ | It's not a VPN, its more like a proxy for PC. For browsers, it uses `http tunneling`.<br/>It's unsafe as; it uses 4096-RSA, which has already been cracked.
 
@@ -132,19 +135,47 @@ With the feature of utilising multiple interfaces(Wifi+Ethernet) together it can
 
 > I will try to implement soon my own lightway based VPN. So do checkout this page in future too!
 
+# 2. Social Media and KGP Network
 
-# 2. Slow LAN Speed
+Access to multiple popular social media platforms is blocked by the campus network.
+> "This is  as per institute administrative policy decision. Sorry for this inconvenience." \
+> Computer & Informatics Centre, IIT Kharagpur - Jul 28, 2022.
+
+- Status of various popular social media platforms:
+
+| Name | Status |
+|---|---|
+|Telegram|❌|
+|Whatsapp|❌|
+|Discord|❌|
+|Signal|❌|
+|YouTube|⚠️|
+|Facebook|✔️|
+|Instagram|✔️|
+|LinkedIn|✔️|
+|Twitter|✔️|
+|Mastodon|✔️|
+|Matrix.org|✔️|
+|Reddit|✔️|
+|Slack|✔️|
+
+⚠️ - Limitations imposed(like `Restricted mode: On` for YouTube)
+
+
+> Source : A thorough documentation on `communication` aspect of restrictions imposed on the network in IIT-KGP campus, by Arpit Bhardwaj - [Link](https://gist.github.com/proffapt/0f032c3c48ec71b1c8dfe3f383b5431f)
+
+# 3. Slow LAN Speed
 
 Before concluding that there is issue with the port, make sure to check the following
 
-### 2.1 LAN Cable : 
+### 3.1 LAN Cable : 
 
 Make sure your cable is CAT 5e and better (6, 6e, etc.) that you can get easily in TechM. 
 
 <img src="images/cat-cables.png" />
 
 
-### 2.2 Ethernet Adapter properties :
+### 3.2 Ethernet Adapter properties :
 
 It's easy to check properties of your ethernet adapter.<br/>
 
@@ -184,7 +215,7 @@ As you can see it shows `1000baseT/Full`. This means my adapter supports 1000 Mb
 
 ℹ️ If your speed is less than 1Gbps, check about your laptop manually online. If it shows it supports 1Gbps, update your drivers.
 
-### 2.3 Disbale auto-negotiation
+### 3.3 Disbale auto-negotiation
 
 
 ✔️ This is really important section. 
@@ -216,7 +247,7 @@ $ sudo ethtool -s eno2 speed 1000 duplex full autoneg on
 
 > Note: If still the network is slow, then it must be the issue with the port or the entire network is slow due to maintainence.
 
-# 3. Slow WIFI Speed
+# 4. Slow WIFI Speed
 
 The institute has a fast Ethernet connection but a notoriously slow Wifi (95% of the cases) due to its usage of `2.4 ghz` and `20MHz` bandwidth with a Bit-rate of `72.2Mb/s` (Megabits/s). This wifi is shared with many people in the same wing which brings its speed down to 10-12 Mbps.
 
@@ -236,7 +267,7 @@ wlo1      IEEE 802.11  ESSID:"STUDENT_SECURED"
 
 ℹ️ The below solutions will work only if your LAN is working at a good speed.
 
-## 3.1 Best Solution
+## 4.1 Best Solution
 
 
 The current laptops either use Wifi 5 or Wifi 6. The can be summarised as follows : 
@@ -256,7 +287,7 @@ The speed of the network will depend on your connected devices. In new phones (2
 For ExpressVPN users : just connect your android on the hotspot created in windows and use the VPN **on your phone**. It works and gives `150 Mbps (15x)` easily.
 
 
-## 3.2 Other Solutions
+## 4.2 Other Solutions
 
 **Just buy a router/repeater or use raspberry Pi**
 
@@ -279,7 +310,7 @@ For detailed config : Check out my post [here](./rpi-express.md).
 
 
 
-# 4. Discussion
+# 5. Discussion
 
 
 This section is a read for people who wish to know why various protocols like Wireguard or OpenVPN (UDP) did not work. Anything that is written here are my observations and may not be absolutely correct. If you find any error please open an issue and inform me about it to make this repository more accurate. This is going to be a long read, so buckle up 🚀.
@@ -287,7 +318,7 @@ This section is a read for people who wish to know why various protocols like Wi
 - There is packet filtering as the network prohibits the use of ceritifcates for the connection and uses `PEAP + MSChapv2` ( which btw is very much vulnerable).  Credentials can be cracked easily and MITM (Man in the middle attacks) can be used against a conenction. So it's better to implement some security methods. For more info lookup : `chapcrack` on Google.
 
 
-## 4.1 Packet Filtering
+## 5.1 Packet Filtering
 
 | Protocol | Status | Proof | Remarks |
 | ---  | --- | --- | --- |
@@ -295,7 +326,7 @@ This section is a read for people who wish to know why various protocols like Wi
 | TCP  | 🟠 | <ul><li>Server hosted on cloud could be connected via `netcat` and `telnet` without issues on port `55555` and similar private ports.But the connection is dropped after just a few requests (<a href="https://github.com/sheharyaar/iit-kgp-network/issues/2">see issue</a>)</li></ul>|<ul><li>TCP Based VPNs do work even though very much slow</li><li>Servers outside the campus network can be accessed over TCP comfortably, on any unused port other than the common ports.</li><li>`tor` cannot be used (TCP over LTS) as it cannot connect to the nodes.</li><li> Need to check tor on a private port and update info.</ul>|
 | ICMP | ❌ | <ul><li>`ping` and `traceroute` doesn't work at all</li></ul> | <ul><li>ICMP packets are plainly dropped displaying normal firewall behaviour.</li></ul> |
 
-## 4.2 VPN Protocols
+## 5.2 VPN Protocols
 <!-- Different type of protocols -->
 
 |Rank||Speed|Stability|Security|Encryption|
@@ -320,7 +351,7 @@ Resources Used :
 
 And many more...
 
-## 4.3 Wireguard
+## 5.3 Wireguard
 <!-- Problem with using wireguard and alternatives and their problems -->
 
 As we see in the section above, Wireguard is faster than OpenVPN. So it was a very good choice for a VPN. 
@@ -338,7 +369,7 @@ Resources Used:
 [https://encomhat.com/2021/07/wireguard-over-tcp/](https://encomhat.com/2021/07/wireguard-over-tcp/)
 
 
-## 4.4 OpenVPN vs ExpressVPN vs Speedify
+## 5.4 OpenVPN vs ExpressVPN vs Speedify
 <!-- Complete comparison of speed in games and casual too -->
 The testing was done on a couple of devices from the campus ( LBS and JCB Hall ). Devices being - ROG Strix G15 2020, Aspitre 7 and MSI GL65 Leopard.
 
@@ -376,7 +407,7 @@ Valorant
 
 As you could see, ExpressVPN maybe the best. Among AWS and DigitalOcean, `AWS` is much better as its servers are in Mumbai whereas for DigitalOcean, they are in Bangalore.
 
-## 4.5 Further Steps
+## 5.5 Further Steps
 
 This repository is available for anyone who wishes to add upon this work or needs information for any purpose or maybe is planning to implement their own VPN. For me, I would love to research more on this topic and look for ways to improve the Internet situation at the campus. It was really difficult with bad network at the campus to be able to even talk with parents on video call as whatsapp and similar apps are blocked.
 
