@@ -152,6 +152,7 @@ Quoting the administration's reply on being asked upon this:
 |Discord|❌|
 |Signal|❌|
 |YouTube|⚠️|
+|Slack|⚠️|
 |Facebook|✅|
 |Instagram|✅|
 |LinkedIn|✅|
@@ -159,9 +160,11 @@ Quoting the administration's reply on being asked upon this:
 |Mastodon|✅|
 |Matrix.org|✅|
 |Reddit|✅|
-|Slack|✅|
 
-⚠️ - Limitations imposed(like `Restricted mode: On` for YouTube)
+⚠️ - Limitations imposed
+
+- `YouTube`: Restricted Mode - ON.
+- `Slack`: Only desktop client works.
 
 
 Though the restrictions are surprising; blocking WhatsApp on the one hand and leaving Facebook and Instagram on the other doesn't seem to fit into any ideology.<br/>
