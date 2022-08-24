@@ -137,9 +137,11 @@ With the feature of utilising multiple interfaces(Wifi+Ethernet) together it can
 
 # 2. Social Media and KGP Network
 
-Access to multiple popular social media platforms is blocked by the campus network.
+Not to our surprise, access to multiple popular social media platforms is blocked by the network administrators.<br/>
+Quoting the administration's reply on being asked upon this:
 > "This is  as per institute administrative policy decision. Sorry for this inconvenience." \
 > Computer & Informatics Centre, IIT Kharagpur - Jul 28, 2022.
+
 
 - Status of various popular social media platforms:
 
