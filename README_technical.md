@@ -164,7 +164,7 @@ Quoting the administration's reply on being asked upon this:
 ⚠️ - Limitations imposed(like `Restricted mode: On` for YouTube)
 
 
-Tho the restrictions are surprising; blocking whatsapp on one hand and leaving Facebook and Instagram on the other hand doesn't seem to fit into any ideology.<br/>
+Though the restrictions are surprising; blocking WhatsApp on the one hand and leaving Facebook and Instagram on the other doesn't seem to fit into any ideology.<br/>
 Anyways let's discuss about some possible solutions and their feasibility; other than using VPNs for obvious reasons.
 
 ## 2.1 Telegram and Proxy
