@@ -10,6 +10,7 @@
  
 **Working VPNs**
 
+- [HotspotShield](https://www.hotspotshield.com/)
 - [Speedify](https://speedify.com/) (Not free)
 - [ExpressVPN](https://www.expressvpn.com/) (Not free)
 - [OpenVPN](https://openvpn.net/) hosted on [DigitalOcean](https://www.digitalocean.com/) or [AWS ec2](https://aws.amazon.com/ec2/)
