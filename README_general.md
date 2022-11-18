@@ -42,6 +42,12 @@ Watch this video on how to create an ec2 instance- [Creating an AWS EC2 instance
 You will need mobile hotspot for this setup.
 To setup OpenVPN Access Server, watch this video - [Steps to create OpenVPN Server on AWS](https://www.youtube.com/watch?v=7vxWiIRWwF4).
 
+> Please use TCP_NODELAY option if you use this vpn for gaming. Steps : 
+
+- SSH into your vpn server
+- execute `sudo echo "tcp-nodelay" | sudo tee -a /etc/openvpn/server.conf`
+- restart openvpn service using `sudo systemctl restart openvpn.service && sudo systemctl restart openvpn@server.service`
+
 ### Step 4: Bill Management
 
 This is a very important setup, to avoid any extra charges from your debit card. Watch this video - [Billing and Terminating Instances](https://www.youtube.com/watch?v=Ptij0mq1Mv4). <br/>

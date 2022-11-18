@@ -17,7 +17,8 @@
     * 5.2 [VPN Protocols](#52-vpn-protocols)
     * 5.3 [Wireguard](#53-wireguard)
     * 5.4 [OpenVPN vs ExpressVPN vs Speedify](#54-openvpn-vs-expressvpn-vs-speedify)
-    * 5.5 [Further Steps](#55-further-steps)
+    * 5.5 [Disable Nagle's Algorithm](#55-disable-nagles-algorithm)
+    * 5.6 [Further Steps](#56-further-steps)
 
 
 # 0. Introduction
@@ -99,6 +100,12 @@ Watch this video on how to create an ec2 instance- [Creating an AWS EC2 instance
 
 You will need mobile hotspot for this setup.
 To setup OpenVPN Access Server, watch this video - [Steps to create OpenVPN Server on AWS](https://www.youtube.com/watch?v=7vxWiIRWwF4).
+
+> Please use TCP_NODELAY option if you use this vpn for gaming. Steps : 
+
+- SSH into your vpn server
+- execute `sudo echo "tcp-nodelay" | sudo tee -a /etc/openvpn/server.conf`
+- restart openvpn service using `sudo systemctl restart openvpn.service && sudo systemctl restart openvpn@server.service`
 
 ### Step 4: Download ovpn files
 
@@ -478,7 +485,19 @@ Valorant
 
 As you could see, ExpressVPN maybe the best. Among AWS and DigitalOcean, `AWS` is much better as its servers are in Mumbai whereas for DigitalOcean, they are in Bangalore.
 
-## 5.5 Further Steps
+## 5.5 Disable Nagle's Algorithm
+
+> Nagle's algorithm is a means of improving the efficiency of TCP/IP networks by reducing the number of packets that need to be sent over the network. It was defined by John Nagle while working for Ford Aerospace. It was published in 1984 as a Request for Comments (RFC) with title Congestion Control in IP/TCP Internetworks in RFC 896.
+
+Source : [Nagle's Algorithm](https://en.wikipedia.org/wiki/Nagle%27s_algorithm)
+
+Lately, I have observed that in-game fast mouse movements (**flicks and single headshots**) were not accurate. I doubted that the packets maybe getting "piggy-backed". This is a problem for gaming, where low latency is needed. So we need to disable it to improve latency. Even though latency did not improve much, but the flicks and headshots  were now much accurate and gave a good playing experience. Much recommended for gamers.
+
+I have added option to `angristan/openvpn-install` repo used in the steps section. I have also created an upstream PR to the repo. I hope it gets merged, till then you can use my script. 
+
+Pull Request : [add TCP_NODELAY option #1063](https://github.com/angristan/openvpn-install/pull/1063)
+
+## 5.6 Further Steps
 
 This repository is available for anyone who wishes to add upon this work or needs information for any purpose or maybe is planning to implement their own VPN. For me, I would love to research more on this topic and look for ways to improve the Internet situation at the campus. It was really difficult with bad network at the campus to be able to even talk with parents on video call as whatsapp and similar apps are blocked.
 
