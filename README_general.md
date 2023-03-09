@@ -14,6 +14,7 @@
 - [Speedify](https://speedify.com/) (Not free)
 - [ExpressVPN](https://www.expressvpn.com/) (Not free)
 - [OpenVPN](https://openvpn.net/) hosted on [DigitalOcean](https://www.digitalocean.com/) or [AWS ec2](https://aws.amazon.com/ec2/)
+- [TLS Tunnel](https://play.google.com/store/apps/details?id=com.tlsvpn.tlstunnel) (free user)
 - [SecureVPN](https://play.google.com/store/apps/details?id=com.fast.free.unblock.secure.vpn&hl=en_IN&gl=US) (free user)
 - [NoCardVPN](https://play.google.com/store/search?q=no%20cardvpn&c=apps&hl=en_IN&gl=US)
 - [Psiphon](https://play.google.com/store/search?q=psiphon&c=apps&hl=en_IN&gl=US)
