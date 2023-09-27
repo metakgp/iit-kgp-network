@@ -2,9 +2,11 @@
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
 
+>⚠️ ⚠️  This is only for people that want to use VPN for their internship works. I am not liable to any actions against you for illegal use of this documentation.
+
 If you are interested in reading this page in blog style, head to : [iitkgp-network.netlify.app/](https://iitkgp-network.netlify.app/) <br><br>
-For general public: [General Readme](./README_general.md) \
-For people with technical knowledge: [Technical Readme](https://github.com/sheharyaar/iit-kgp-network/blob/main/README_technical.md)
+For general public: [General Readme (Updated VPN steps)](./README_general.md) \
+For people with technical knowledge: [Technical Readme (Updated Section 5.1 for the new filters)](./README_technical.md)
 
 ## Contributing
 

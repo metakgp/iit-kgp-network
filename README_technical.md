@@ -13,7 +13,8 @@
     * 4.1 [Best Solution](#41-best-solution)
     * 4.2 [Other Solutions](#42-other-solutions)
 * 5\. [Discussion](#5-discussion)
-    * 5.1 [Packet Filtering](#51-packet-filtering)
+    * 5.1 [Packet Filtering (old)](#51-packet-filtering)
+      * [New Update](#new-update)
     * 5.2 [VPN Protocols](#52-vpn-protocols)
     * 5.3 [Wireguard](#53-wireguard)
     * 5.4 [OpenVPN vs ExpressVPN vs Speedify](#54-openvpn-vs-expressvpn-vs-speedify)
@@ -84,47 +85,7 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 
 ## 1.1 Using OpenVPN
 
-### Step 1: Get an AWS account
-
-> ⚠️ Make sure to setup the server properly at your own risk. I am not liable to any charges you receive for your mistakes. First watch video about Billing here - [Billing and Terminating Instances](https://www.youtube.com/watch?v=Ptij0mq1Mv4).
-
-Watch this video on how to create a free AWS account - [Create new AWS account](https://www.youtube.com/watch?v=gA9pl-A9gDM). Remember this step requires you to have a debit card (Mastercard, American Express or Visa).
-
-
-### Step 2: Create a free ec2 instance
-
-Watch this video on how to create an ec2 instance- [Creating an AWS EC2 instance](https://www.youtube.com/watch?v=bJUBSqWaPBQ).
-
-> The further 2 steps are derived from a blog, [IIT KGP: Bypassing network restrictions without compromising on internet speed by Anjay Goel](https://anjaygoel.github.io/posts/IIT-KGP-Bypass-Internet-Restrictions/#step-3-setting-up-openvpn-access-server) 
-
-### Step 3: Setting Up OpenVPN Access Server:
-
-You will need mobile hotspot for this setup.
-To setup OpenVPN Access Server, watch this video - [Steps to create OpenVPN Server on AWS](https://www.youtube.com/watch?v=7vxWiIRWwF4).
-
-> Please use TCP_NODELAY option if you use this vpn for gaming. Steps : 
-
-- SSH into your vpn server
-- execute `sudo echo "tcp-nodelay" | sudo tee -a /etc/openvpn/server.conf`
-- restart openvpn service using `sudo systemctl restart openvpn.service && sudo systemctl restart openvpn@server.service`
-
-### Step 4: Download ovpn files
-
-*   **Linux/MacOS**: Run the command - `scp -i /path/to/privatekey <username>@<host>:/path/to/ovpn_file ~/Documents/`, the key will be downloaded in Documents.
-    
-*   **Windows**: Skip this section.
-
-*   **Android**: See the windows/linux/MacOS step and then transfer the downloaded android.ovpn to phone via Telegram/Bluetooth/Mail or whatever to a folder in your android.
-
-### Step 5: Connecting to VPN on client devices:
-
-*   **Android**: Download [Open VPN Connect](https://play.google.com/store/apps/details?id=net.openvpn.openvpn&hl=en_IN&gl=US) app from Play Store. Open the app and after going throught the first screen, got to **Files** tab of the app, import the ovpn file and connect.
-    
-*   **Linux**: In many distros, you can go to the network manager and import the ovpn file. If not then install OpenVPN (`$ sudo apt-get install openvpn`) and run using `$ sudo openvpn --config /path/to/config.ovpn`.
-
-*   **MacOS**: You can either download the [tunnelblick](https://tunnelblick.net/downloads.html) GUI tool for importing the ovpn files or download the cli tool for openvpn via MacPorts or brew using `$ sudo ports install openvpn` and `$ brew install openvpn` respectively; then execute `$ sudo openvpn --config /path/to/config.ovpn`.
-    
-*   **Windows**: Download the [official client](https://openvpn.net/client-connect-vpn-for-windows/), import the ovpn file and run - watch video here - [Steps to connect to OpenVPN](https://www.youtube.com/watch?v=P2SroQ_pzPU)
+Checkout the steps at the General Readme - [here](https://github.com/sheharyaar/iit-kgp-network/blob/main/README_general.md#11-using-openvpn)
 
 ### Step 6: Bill Management
 
@@ -402,8 +363,17 @@ This section is a read for people who wish to know why various protocols like Wi
 | Protocol | Status | Proof | Remarks |
 | ---  | --- | --- | --- |
 | UDP  | 🟠 | <ul><li>The network connected well to server hosted on Cloud on non standard port `55555` over UDP. But the connection is dropped after just a few requests (<a href="https://github.com/sheharyaar/iit-kgp-network/issues/2">see issue</a>)</li></ul>  | <ul><li> UDP works and connects to an external server on any unused port, other than the standard ports.</li><li> As common ports are most probably blocked, services like `DNS` doesn't work. Hence programs depending on DNS-name resolution like `dig` and `nslookup` won't work. The server is able to use **only the DNS provided by campus network DHCP** </li><li>To make DNS work we need `iptables` magic on Linux. This `iptables` is used by expressvpn to forward DNS requests. Read More in Discussions.</li></ul> |        
-| TCP  | 🟠 | <ul><li>Server hosted on cloud could be connected via `netcat` and `telnet` without issues on port `55555` and similar private ports.But the connection is dropped after just a few requests (<a href="https://github.com/sheharyaar/iit-kgp-network/issues/2">see issue</a>)</li></ul>|<ul><li>TCP Based VPNs do work even though very much slow</li><li>Servers outside the campus network can be accessed over TCP comfortably, on any unused port other than the common ports.</li><li>`tor` cannot be used (TCP over LTS) as it cannot connect to the nodes.</li><li> Need to check tor on a private port and update info.</ul>|
+| TCP  | 🟠 | <ul><li>Server hosted on cloud could be connected via `netcat` and `telnet` without issues on port `55555` and similar private ports.But the connection is dropped after just a few requests (<a href="https://github.com/sheharyaar/iit-kgp-network/issues/2">see issue</a>)</li></ul>|<ul><li>TCP Based VPNs do work even though very much slow</li><li>Servers outside the campus network can be accessed over TCP comfortably, on any unused port other than the common ports.</li><li>`tor` cannot be used (TCP over LTS) as it cannot connect to the nodes.</li><li> Update : <span style="color:yellow">Interesting finding</span>.<br> The network uses `SNI-based TLS Filtering`, this can be a good reason why the VPNs are unable to connect and even TOR doesn't connect, because they use plain text hostname in SNI field.</ul>|
 | ICMP | ❌ | <ul><li>`ping` and `traceroute` doesn't work at all</li></ul> | <ul><li>ICMP packets are plainly dropped displaying normal firewall behaviour.</li></ul> |
+
+### New Update
+- UDP : Needs reasearch, but now `dig` and DNS queries are resolved (earlier this was blocked too).
+
+- TCP : ports other than 443, 80 are blocked (Needs more research). 
+  - For port 80, restricted HTTp connections return error 302 with custom message. For port 443, the network uses `SNI-based fltering` for the packets which have plain text `SNI Field` in the TLS ClientHello header. 
+  - To bypass, the filtering, a good SNI such as google.com must be used. For server behind loadbalancers or Virtual hosting, this can be an issue because they use SNI for routing packets. 
+  - Hence, the available option is to use OpenVPN over stunnel (allows custom SNI) on any popular VM (Azure, AWS, etc).
+
 
 ## 5.2 VPN Protocols
 <!-- Different type of protocols -->

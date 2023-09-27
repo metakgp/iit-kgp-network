@@ -1,7 +1,7 @@
 # Index
 
 * 1\. [VPNs](#1-vpns)
-    * 1.1 [Using OpenVPN](#11-using-openvpn)
+    * 1.1 [Using OpenVPN (Updated)](#11-using-openvpn)
 * 2\. [LAN](#2-lan)
 * 3\. [WIFI](#3-wifi)
 
@@ -25,6 +25,8 @@
 
 ## 1.1 Using OpenVPN
 
+> There has been firewall changes, and the steps are updated accordingly in Step 3. Step 1 and step 2 remain the same.
+
 ### Step 1: Get an AWS account
 
 > ⚠️ Make sure to setup the server properly at your own risk. I am not liable to any charges you receive for your mistakes. First watch video about Billing here - [Billing and Terminating Instances](https://www.youtube.com/watch?v=Ptij0mq1Mv4).
@@ -36,14 +38,65 @@ Watch this video on how to create a free AWS account - [Create new AWS account](
 
 Watch this video on how to create an ec2 instance- [Creating an AWS EC2 instance](https://www.youtube.com/watch?v=bJUBSqWaPBQ).
 
-> The further 2 steps are derived from a blog, [IIT KGP: Bypassing network restrictions without compromising on internet speed by Anjay Goel](https://anjaygoel.github.io/posts/IIT-KGP-Bypass-Internet-Restrictions/#step-3-setting-up-openvpn-access-server) 
 
-### Step 3: Setting Up OpenVPN Access Server:
+### Step 3: Setting Up OpenVPN Access Server (Updated):
+
+>⚠️  This is only for people that want to use VPN for their internship works. I am not liable to any actions against you for illegal use of this documentation.
+
 
 You will need mobile hotspot for this setup.
-To setup OpenVPN Access Server, watch this video - [Steps to create OpenVPN Server on AWS](https://www.youtube.com/watch?v=7vxWiIRWwF4).
+To setup OpenVPN Access Server, watch this video (old).  - [Steps to create OpenVPN Server on AWS](https://www.youtube.com/watch?v=7vxWiIRWwF4).
 
-> Please use TCP_NODELAY option if you use this vpn for gaming. Steps : 
+__Updated Steps__
+
+This is for Linux/Windows, for Android/IOS , it's better you figure it out. That also has similar steps 
+
+###### Server Side
+
+- SSH into your server (as shown in the video) and follow along the video with these new steps.
+  
+For first time users, before running the openvpn script, do the following :
+- Instead of the script mentioned in the video, use the following commands  and proceed as you would (like in the video) using `sudo ./openvpn-install.sh` :  
+  ```shell
+    curl -O https://raw.githubusercontent.com/sheharyaar/iit-kgp-network/feat-next-update/openvpn-install.sh
+    chmod +x openvpn-install.sh
+    sudo ./openvpn-install.sh
+    ```
+- Download the ovpn files as shown in the video. next see Client side (below)
+
+For people who __already have OpenVPN hosted__ on server:
+- SSH into the server and run the script which you had installed earlier by running `sudo ./openvpn-install.sh`
+- Use the option `Remove OpenVPN and enter y to uninstall it`
+- Remove the script using `rm openvpn-install.sh`
+- Download the new script given in previous step and proceed with natural installation steps and then download the ovpn files using winscp/scp as you did earlier.
+
+###### Client Side (Windows / Linux)
+
+After completing the steps on the server side, on the `Windows`` side do the following : 
+- Install stunnel from its official website ([here](https://www.stunnel.org/downloads.html)). Linux popele search in their distributions repository (apt/aur) for the package.
+- Open stunnel and use the following config (dont forget to replace `123.45.6` with your IP):
+    ```conf
+    client = yes
+    sni = https:www.google.com
+    [openvpn]
+    accept = 127.0.0.1:1194
+    connect = 123.45.6:443
+    ```
+
+    Apply the config here : 
+    - Step 1 : In the action tool bal find the stunnel icon and double click, a window will open
+    <img src="images/stunnel-windows-config1.jpg" />
+    - Step 2 : In the window Goto Configuration > Edit Configuration
+    <img src="images/stunnel-windows-config2.jpg" />
+    - Step 3 : Paste config above as shown, press Ctrl+S to save and close the notepad
+    <img src="images/stunnel-windows-config3.jpg" />
+    - Step 4 : Goto Configuration > Reload Configuration, you should see configration successful
+    <img src="images/stunnel-windows-config4.jpg" />
+
+- Run openvpn now and iport the ovpn config as earlier
+
+###### For technical people
+> Please use TCP_NODELAY option if you use this vpn for gaming. Else skip
 
 - SSH into your vpn server
 - execute `sudo echo "tcp-nodelay" | sudo tee -a /etc/openvpn/server.conf`
