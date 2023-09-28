@@ -670,7 +670,7 @@ function installOpenVPN() {
                 apt-get update
             fi
             # Ubuntu > 16.04 and Debian > 8 have OpenVPN >= 2.4 without the need of a third party repository.
-            apt-get install -y openvpn iptables openssl wget ca-certificates curl stunnel
+            apt-get install -y openvpn iptables openssl wget ca-certificates curl stunnel4
             elif [[ $OS == 'centos' ]]; then
             yum install -y epel-release
             yum install -y openvpn iptables openssl wget ca-certificates curl tar 'policycoreutils-python*'
@@ -1011,6 +1011,12 @@ RemainAfterExit=yes
 
 [Install]
     WantedBy=multi-user.target" >/etc/systemd/system/iptables-openvpn.service
+    
+    # Lagnos : add certificate generation
+    openssl genrsa -out key.pem 2048
+    openssl req -new -x509 -key key.pem -out cert.pem -days 1095 -subj "/C=IN/ST=Maharashtra/L=Mumbai/O=Dis/CN=www.google.com"
+    mv key.pem /etc/stunnel/stunnel.key
+    mv cert.pem /etc/stunnel/stunnel.pem
     
     # Lagnos : Addd stunnel server config and systemctl service
     echo ";setuid = stunnel4
