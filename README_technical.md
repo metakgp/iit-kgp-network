@@ -82,8 +82,63 @@ Section 5 deals with Contributing rules and Section 6 ends with a vote of thanks
 - **OpenVPN, ExpressVPN and Speedify** are the fastest **and** the most secure VPNs available.
 
 
-## 1.1 Using OpenVPN
+## 1.1 Using OpenVPN (Azure/AWS)
 
+### (Azure)
+### Step 1: Get an Azure using Institutional Email
+- Create an account using your institutional email.
+- Go to [Azure for Students](https://azure.microsoft.com/en-in/free/students/) and click on `Activate Now`.
+- Fill in the details and verify your email.
+- You will get a $100 credit for 12 months.
+
+### Step 2: Create a free VM
+- Go to the Azure portal and click on `Create a resource`.
+- Search for `Ubuntu Server 20.04 LTS` and click on `Create`.
+    - Subscription: Azure for Students
+    - Resource Group: Create a new one
+    - Virtual Machine Name: Choose a name
+    - Region: Choose a region
+    - Availability Options: No infrastructure redundancy required
+    - Security type: Standard
+    - Image: Ubuntu Server 20.04 LTS
+    - VM architecture: x64
+    - Size: Standard_B1s - 1 vcpu, 1 GiB memory (₹631.61/month) (free services eligible)
+    - Username: Choose a username
+    - SSH public key: Generate a new key pair or use an existing one
+    - Inbound port rules: Allow selected ports
+        - Public inbound ports: SSH (22), HTTP (80), HTTPS (443)
+    - Click on `Review + create` and then `Create`.
+- Wait for the deployment to complete and then click on `Go to resource`.
+- Note down the `Public IP address` of the VM for further steps.
+
+### Step 3: Setting Up OpenVPN Access Server:
+- SSH into your VM
+- Download the script by running `wget https://raw.githubusercontent.com/metakgp/iit-kgp-network/main/assets/azure-openvpn.sh`.
+- Make the script executable by running `chmod +x azure-openvpn.sh`.
+- Run the script using `sudo bash azure-openvpn.sh`.
+    - Or one can execute as `sudo bash azure-openvpn.sh -protocol=udp -vpnport=5000`
+    - The available options are: dns1 (default: 8.8.8.8), dns2 (default: 8.8.4.4), vpnport (default: 443 because campus wifi blocks on other), protocol (default: tcp), host (default: yourdomain.com)
+- If you get some error, reboot the VM and run the script again (some warnings may remain but it will work).
+- Download the client configuration script by running `wget https://raw.githubusercontent.com/metakgp/iit-kgp-network/main/assets/azure-openvpn-makeclient.sh`.
+- Make the script executable by running `chmod +x azure-openvpn-makeclient.sh`.
+- Create an .ovpn file by running `sudo bash azure-openvpn-makeclient.sh <client_name>`. This will create a .ovpn file in `/etc/openvpn/clients/`.
+
+### Step 4: Download ovpn files
+- You can't scp to your PC if it is connected to campus network, so just run `cat /etc/openvpn/clients/<client_name>.ovpn` and copy the content to your PC in a .ovpn file.
+
+### Step 5: Connecting to VPN on client devices:
+Once the profile is downloaded you need to configure a client:
+
+* **Windows**: use [OpenVPN GUI](https://openvpn.net/index.php/open-source/downloads.html). After installing the app, copy the .ovon to the **C:\Program Files\OpenVPN\config** folder. Launch the GUI from your Start menu, then right click the icon in the Tool Tray, then click **Connect**. Disconnect by right clicking and selecting **Disconnect**.
+
+* **MacOS** (OS X): use [Tunnelblick](https://tunnelblick.net/downloads.html). Download and install Tunnelblick. After downloading, double-click on the downloaded .ovpn file and import the configuration either for yourself or all users. Once imported, click the Tunnleblick icon on the menu bar and click **Connect**. Disconnect by clicking the Tunnelblick icon and selecting **Disconnect**.
+
+* **Android**: use [OpenVPN Connect for Android](https://play.google.com/store/apps/details?id=net.openvpn.openvpn&hl=en). Download and install the app. Next, go to the admin site and create and/or download a profile. In the app, select Import from the menu, then select **Import**, then select **Import Profile from SD card**. Find the profile in your **Downloads** folder and import the profile. Once downloaded, click **Connect**. To disconnect, open the app again and select **Disconnect**.
+
+* **iOS**: use [OpenVPN Connect for iOS](https://itunes.apple.com/us/app/openvpn-connect/id590379981?mt=8). Install the app, then browse to the admin site in Safari. Create and/or download a profile. After the profile is downloaded, select **Open in Open VPN**. Install the profile, then select **Connect** to connect to the VPN. To disconnect, open the app again and select **Disconnect**.
+
+
+### (AWS)
 ### Step 1: Get an AWS account
 
 > ⚠️ Make sure to setup the server properly at your own risk. I am not liable to any charges you receive for your mistakes. First watch video about Billing here - [Billing and Terminating Instances](https://www.youtube.com/watch?v=Ptij0mq1Mv4).
