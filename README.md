@@ -1,10 +1,10 @@
+# IIT KGP Network Documentation
 [![forthebadge](https://forthebadge.com/images/badges/made-with-markdown.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/built-with-love.svg)](https://forthebadge.com)
 
-If you are interested in reading this page in blog style, head to : https://network.metakgp.app/ <br><br>
+If you are interested in reading this page in blog style, head to : https://network.metakgp.org/ <br><br>
 For general public: [General Readme](./README_general.md) \
 For people with technical knowledge: [Technical Readme](./README_technical.md)
-
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.

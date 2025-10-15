@@ -1,5 +1,4 @@
 # Index
-
 * 1\. [VPNs](#1-vpns)
     * 1.1 [Using OpenVPN](#11-using-openvpn)
 * 2\. [LAN](#2-lan)
@@ -7,7 +6,7 @@
 
 
 # 1. VPNs
- 
+
 **Working VPNs**
 
 - [HotspotShield](https://www.hotspotshield.com/)
@@ -36,14 +35,14 @@ Watch this video on how to create a free AWS account - [Create new AWS account](
 
 Watch this video on how to create an ec2 instance- [Creating an AWS EC2 instance](https://www.youtube.com/watch?v=bJUBSqWaPBQ).
 
-> The further 2 steps are derived from a blog, [IIT KGP: Bypassing network restrictions without compromising on internet speed by Anjay Goel](https://anjaygoel.github.io/posts/IIT-KGP-Bypass-Internet-Restrictions/#step-3-setting-up-openvpn-access-server) 
+> The further 2 steps are derived from a blog, [IIT KGP: Bypassing network restrictions without compromising on internet speed by Anjay Goel](https://anjaygoel.github.io/posts/IIT-KGP-Bypass-Internet-Restrictions/#step-3-setting-up-openvpn-access-server)
 
 ### Step 3: Setting Up OpenVPN Access Server:
 
 You will need mobile hotspot for this setup.
 To setup OpenVPN Access Server, watch this video - [Steps to create OpenVPN Server on AWS](https://www.youtube.com/watch?v=7vxWiIRWwF4).
 
-> Please use TCP_NODELAY option if you use this vpn for gaming. Steps : 
+> Please use TCP_NODELAY option if you use this vpn for gaming. Steps :
 
 - SSH into your vpn server
 - execute `sudo echo "tcp-nodelay" | sudo tee -a /etc/openvpn/server.conf`
@@ -57,18 +56,18 @@ Remember that bandwidth is _**free upto 100GB per month**_, so its better not to
 Remember to check your usage weekly/biweekly as shown in the video.<br/><br/>
 If in any case you have to stop an instance forcibly, do it to be on the safe side.
 
-# 2. LAN 
+# 2. LAN
 
-### 2.1 LAN Cable : 
+### 2.1 LAN Cable :
 
-Make sure your cable is CAT 5e and better (6, 6e, etc.) that you can get easily in TechM. 
+Make sure your cable is CAT 5e and better (6, 6e, etc.) that you can get easily in TechM.
 
 ### 2.2 Ethernet Adapter properties :
 
 Check if your system supports 1 Gbps connection. Check online tutorials for your operating system for that.
 
 
-# 3. WIFI 
+# 3. WIFI
 
 To use Wifi on your devices :
 - Select Authentication type : `MSCHAPv2`
